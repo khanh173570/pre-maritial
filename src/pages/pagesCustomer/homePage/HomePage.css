@@ -1,0 +1,137 @@
+.home {
+  background-color: white;
+  height: 100%;
+  margin-top: 100px;
+}
+.custom-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  cursor: pointer;
+  overflow: hidden;
+  padding: 0 !important;
+  margin: 0;
+  /* border: none; */
+  box-shadow: none;
+}
+.card-image-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70%;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  height: 30%;
+  text-align: left; /* Căn trái nội dung */
+  align-items: flex-start; /* Đảm bảo các phần tử bên trong căn trái */
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: rgb(78, 78, 165);
+}
+.card-body {
+  padding: 5px; /* Xóa hoàn toàn padding */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 110px;
+  margin-bottom: 10px;
+}
+.author {
+  margin-top: auto; /* Đẩy xuống dưới */
+  color: black;
+}
+.advice {
+  width: 99%;
+  border-radius: 8px;
+  margin-top: 50px;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.advice-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #cdd7e6;
+  border-radius: 8px;
+  width: 790px;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.advice-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 5px;
+  width: 800px;
+  height: auto;
+}
+.advice-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.advice-image {
+  object-fit: cover;
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+}
+
+.advice-content {
+  display: flex;
+  flex-direction: column;
+  color: rgb(78, 78, 165);
+  padding: 10px;
+}
+.advice-content h5 {
+  text-align: center;
+}
+
+.sub-items-list {
+  text-align: left;
+  padding-left: 20px; /* Đảm bảo lùi vào nếu cần */
+}
+.button-view {
+  text-decoration: none;
+  cursor: pointer;
+  background-color: antiquewhite;
+  color: black;
+  width: 60%;
+}
+
+.button-view:hover {
+  text-decoration: underline;
+  background-color: green;
+}
+.button-views {
+  text-decoration: none;
+  cursor: pointer;
+  background-color: antiquewhite;
+  color: black;
+  width: 60%;
+}
+
+.button-views:hover {
+  text-decoration: underline;
+  background-color: green;
+}
+li::marker {
+  content: "⭐";
+}
