@@ -14,6 +14,7 @@ import { CustomerGuard } from "./auth/CustomerGuard";
 import HomePage from "./pages/pagesCustomer/homePage/HomePage";
 import CustomerApp from "./layouts/layoutCustomer/CustomerApp";
 import AdminApp from "./layouts/layoutAdmin/AdminApp";
+import Dashboard from "./components/componentsAdmin/Dashboard/Dashboard";
 import TherapistApp from "./layouts/layoutTherapist/TherapistApp";
 import ProfileCustomer from "./pages/pagesCustomer/profileCustomer";
 
@@ -35,6 +36,11 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
         </Route>
 
+        {/* <Route path="/" element={<AdminApp />}>
+          {/* Default route for AdminApp (shows Dashboard) *
+          <Route index element={<Dashboard />} />
+        </Route> */}
+
         {/* Protected Routes */}
         <Route
           path="/"
@@ -54,7 +60,9 @@ const App = () => {
               <AdminApp />
             </AuthGuard>
           }
-        />
+        >
+          <Route index element={<Dashboard />} />
+        </Route>
 
         <Route
           path="/therapist-home"
