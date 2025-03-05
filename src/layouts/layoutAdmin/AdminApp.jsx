@@ -1,27 +1,19 @@
+// import React from 'react';
 import { Outlet } from "react-router-dom";
-import "./AdminApp.css";
-import Header from "../../components/componentsAdmin/componentsHeader/componentsHeader.jsx";
-import Sidebar from "../../components/componentsAdmin/SideBar/Sidebar.jsx";
-import Dashboard from "../../components/componentsAdmin/Dashboard/Dashboard.jsx";
-import { useState } from "react";
-
+import Header from "../../components/componentsAdmin/componentsHeader/componentsHeader";
+import Footer from "../../components/componentsAdmin/componentsFooter/componentsFooter";
 function AdminApp() {
-  const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
-
-  const openSideBar = () => {
-    setOpenSidebarToggle(!openSidebarToggle);
-  };
-
   return (
-    <div className="grid-container admin-dashboard">
-      <Header openSideBar={openSideBar} />
-      <Sidebar
-        openSidebarToggle={openSidebarToggle}
-        openSideBar={openSideBar}
-      />
-      <Outlet />
-    </div>
+    <>
+      <div className="header">
+        <Header />
+      </div>
+      <div className="main">
+        <Outlet />
+      </div>
+    </>
   );
 }
 
 export default AdminApp;
+// gom tat ca page

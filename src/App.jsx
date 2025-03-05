@@ -5,7 +5,8 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import Login from "./components/Login";
+// import Login from "./components/Login";
+import LoginPage from "./pages/login/login-page";
 import Unauthorized from "./pages/Unauthorized";
 import AuthGuard from "./auth/AuthGuard";
 // import CustomerGuard from "./auth/CustomerGuard";
@@ -22,14 +23,15 @@ import Getting_Ready_Marriage from "./pages/pagesCustomer/Getting_Ready_Marriage
 import Great_Marriage_Vows from "./pages/pagesCustomer/Great_Marriage_Vows";
 import Pre_MarriageAdvice from "./pages/pagesCustomer/Pre_MarriageAdvice";
 import Marriage_Preparation_Tips from "./pages/pagesCustomer/Marriage_Preparation_Tips";
-
+import PageAdmin from "./pages/pagesAdmin/pagesAdmin";
+import Pagetest from "./pages/pagesAdmin/page01";
 const App = () => {
   return (
     <Router>
       <Routes>
         {/* Public Route */}
 
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
 
         <Route
@@ -69,7 +71,7 @@ const App = () => {
           <Route></Route>
         </Route>
 
-        <Route
+        {/* <Route
           path="/admin-home"
           element={
             <AuthGuard requiredRole="admin">
@@ -78,8 +80,14 @@ const App = () => {
           }
         >
           <Route index element={<Dashboard />} />
-        </Route>
+        </Route> */}
 
+        {/* chưa bắt login AuthGuard */}
+        <Route element={<AdminApp />}>
+          <Route path="/admin-home" element={<PageAdmin />} />
+
+          <Route path="/admin-test" element={<Pagetest />} />
+        </Route>
         <Route
           path="/therapist-home"
           element={
@@ -87,7 +95,9 @@ const App = () => {
               <TherapistApp />
             </AuthGuard>
           }
-        />
+        >
+          {/* <Route path="/admin" element={<Admin />} /> */}
+        </Route>
 
         {/* Redirect all unknown routes to login */}
         <Route path="*" element={<Navigate to="/login" />} />
