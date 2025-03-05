@@ -10,7 +10,7 @@ import img1 from "../../../assets/asstetsCustomer/ar1.jpg";
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const [showAllCards, setShowAllCards] = useState(false);
+  const [showAllCards] = useState(false);
 
   useEffect(() => {
     console.log("HomePage component mounted!");
