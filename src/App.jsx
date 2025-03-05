@@ -17,6 +17,11 @@ import AdminApp from "./layouts/layoutAdmin/AdminApp";
 import Dashboard from "./components/componentsAdmin/Dashboard/Dashboard";
 import TherapistApp from "./layouts/layoutTherapist/TherapistApp";
 import ProfileCustomer from "./pages/pagesCustomer/profileCustomer";
+import DetailPage from "./pages/pagesCustomer/homePage/DetailPage";
+import Getting_Ready_Marriage from "./pages/pagesCustomer/Getting_Ready_Marriage";
+import Great_Marriage_Vows from "./pages/pagesCustomer/Great_Marriage_Vows";
+import Pre_MarriageAdvice from "./pages/pagesCustomer/Pre_MarriageAdvice";
+import Marriage_Preparation_Tips from "./pages/pagesCustomer/Marriage_Preparation_Tips";
 
 const App = () => {
   return (
@@ -26,6 +31,7 @@ const App = () => {
 
         <Route path="/login" element={<Login />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
+
         <Route
           element={
             <CustomerGuard>
@@ -34,6 +40,8 @@ const App = () => {
           }
         >
           <Route path="/" element={<HomePage />} />
+          <Route path="/pre-marige" element={<Pre_MarriageAdvice />} />
+          <Route path="/readiness" element={<Getting_Ready_Marriage />} />
         </Route>
 
         {/* <Route path="/" element={<AdminApp />}>
@@ -51,6 +59,14 @@ const App = () => {
           }
         >
           <Route path="/profile" element={<ProfileCustomer />} />
+          <Route path="/detail/:id" element={<DetailPage />} />
+          <Route path="/vows" element={<Great_Marriage_Vows />} />
+          <Route
+            path="/marriage-preparation/"
+            element={<Marriage_Preparation_Tips />}
+          />
+
+          <Route></Route>
         </Route>
 
         <Route

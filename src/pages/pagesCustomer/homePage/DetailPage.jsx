@@ -10,7 +10,8 @@ import img3 from "../../../assets/asstetsCustomer/ar3.jpg";
 import img4 from "../../../assets/asstetsCustomer/ar4.jpg";
 import img5 from "../../../assets/asstetsCustomer/ar5.jpg";
 import img6 from "../../../assets/asstetsCustomer/ar6.jpg";
-const productData = [
+
+export const productData = [
   {
     id: 1,
     image: img1,

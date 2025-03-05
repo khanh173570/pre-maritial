@@ -15,6 +15,7 @@
 
 .header.visible {
   transform: translateY(0);
+  height: 100px;
 }
 
 .main {

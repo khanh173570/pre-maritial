@@ -2,6 +2,7 @@
   background-color: #fff;
   padding: 10px 0;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  height: 300px;
 }
 
 .navbar-toggler {
@@ -31,4 +32,20 @@
 .login-button:hover {
   background-color: rgb(125, 221, 125);
   color: black;
+}
+.title {
+  white-space: nowrap;
+  overflow: hidden;
+  font-family: monospace;
+  max-width: 0;
+  animation: typing 5s steps(20) infinite alternate-reverse;
+}
+
+@keyframes typing {
+  from {
+    max-width: 0;
+  }
+  to {
+    max-width: 100%;
+  }
 }
