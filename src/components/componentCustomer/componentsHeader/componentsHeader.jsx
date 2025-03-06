@@ -25,7 +25,7 @@ function ComponentsHeader() {
     <Navbar
       expand="md"
       className="navbar-light w-100"
-      style={{ height: "200px" }}
+      style={{ height: "100px" }}
     >
       <Container>
         <Navbar.Brand href="/" className="fw-bold d-flex align-items-center">
