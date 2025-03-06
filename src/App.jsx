@@ -11,6 +11,7 @@ import Unauthorized from "./pages/Unauthorized";
 import AuthGuard from "./auth/AuthGuard";
 // import CustomerGuard from "./auth/CustomerGuard";
 import { CustomerGuard } from "./auth/CustomerGuard";
+import { Outlet } from "react-router-dom"; // Đảm bảo import Outlet
 
 import HomePage from "./pages/pagesCustomer/homePage/HomePage";
 import CustomerApp from "./layouts/layoutCustomer/CustomerApp";
@@ -29,46 +30,39 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        {/* Public Route */}
-
         <Route path="/login" element={<LoginPage />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
 
         <Route
+          path="/customer-home"
           element={
             <CustomerGuard>
               <CustomerApp />
             </CustomerGuard>
           }
         >
-          <Route path="/" element={<HomePage />} />
-          <Route path="/pre-marige" element={<Pre_MarriageAdvice />} />
-          <Route path="/readiness" element={<Getting_Ready_Marriage />} />
-        </Route>
+          {/* Các trang không yêu cầu AuthGuard */}
+          <Route path="/customer-home" element={<HomePage />} />
+          <Route path="pre-marige" element={<Pre_MarriageAdvice />} />
+          <Route path="readiness" element={<Getting_Ready_Marriage />} />
 
-        {/* <Route path="/" element={<AdminApp />}>
-          {/* Default route for AdminApp (shows Dashboard) *
-          <Route index element={<Dashboard />} />
-        </Route> */}
-
-        {/* Protected Routes */}
-        <Route
-          path="/"
-          element={
-            <AuthGuard requiredRole="customer">
-              <CustomerApp />
-            </AuthGuard>
-          }
-        >
-          <Route path="/profile" element={<ProfileCustomer />} />
-          <Route path="/detail/:id" element={<DetailPage />} />
-          <Route path="/vows" element={<Great_Marriage_Vows />} />
+          {/* Các trang yêu cầu AuthGuard */}
           <Route
-            path="/marriage-preparation/"
-            element={<Marriage_Preparation_Tips />}
-          />
-
-          <Route></Route>
+            path="/customer-home"
+            element={
+              <AuthGuard requiredRole="customer">
+                <Outlet />
+              </AuthGuard>
+            }
+          >
+            <Route path="profile" element={<ProfileCustomer />} />
+            <Route path="detail/:id" element={<DetailPage />} />
+            <Route path="vows" element={<Great_Marriage_Vows />} />
+            <Route
+              path="marriage-preparation"
+              element={<Marriage_Preparation_Tips />}
+            />
+          </Route>
         </Route>
 
         {/* <Route

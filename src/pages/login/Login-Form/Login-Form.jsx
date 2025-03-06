@@ -38,7 +38,7 @@ const Login = ({ termsRef }) => {
         // Chuyển hướng dựa trên role
         switch (response.data.user.role) {
           case "customer":
-            navigate("/");
+            navigate("/customer-home");
             break;
           case "admin":
             navigate("/admin-home");

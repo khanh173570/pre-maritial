@@ -1,22 +1,22 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 
-const AuthGuard = ({ children, requiredRole }) => {
+const AuthGuard = ({ requiredRole }) => {
   const token = localStorage.getItem("token");
   const user = JSON.parse(localStorage.getItem("user"));
 
-  // Nếu không có token, chuyển hướng về trang đăng nhập
-  if (!token) {
-    return <Navigate to="/home" />;
+  // Nếu không có token hoặc không có user, chuyển hướng về login
+  if (!token || !user) {
+    return <Navigate to="/login" replace />;
   }
 
-  // Nếu role không khớp, chuyển hướng về trang không có quyền truy cập
+  // Nếu có role yêu cầu mà không khớp, chuyển hướng về unauthorized
   if (requiredRole && user.role !== requiredRole) {
-    return <Navigate to="/unauthorized" />;
+    return <Navigate to="/unauthorized" replace />;
   }
 
-  // Nếu đủ điều kiện, render children
-  return children;
+  // Nếu hợp lệ, cho phép truy cập các trang con
+  return <Outlet />;
 };
 
 export default AuthGuard;

@@ -51,16 +51,19 @@ function ComponentsHeader() {
             </NavLink> */}
 
             <NavDropdown title="Getting Married" id="nav-dropdown">
-              <NavDropdown.Item as={NavLink} to="/pre-marige">
+              <NavDropdown.Item as={NavLink} to="/customer-home/pre-marige">
                 Pre Marriage Counselling
               </NavDropdown.Item>
-              <NavDropdown.Item as={NavLink} to="/readiness">
+              <NavDropdown.Item as={NavLink} to="/customer-home/readiness">
                 Marriage Readiness
               </NavDropdown.Item>
-              <NavDropdown.Item as={NavLink} to="/vows">
+              <NavDropdown.Item as={NavLink} to="/customer-home/vows">
                 Marriage Vows
               </NavDropdown.Item>
-              <NavDropdown.Item as={NavLink} to="/marriage-preparation">
+              <NavDropdown.Item
+                as={NavLink}
+                to="/customer-home/marriage-preparation"
+              >
                 Marriage Preparation
               </NavDropdown.Item>
             </NavDropdown>
@@ -122,7 +125,7 @@ function ComponentsHeader() {
             >
               {user ? (
                 <>
-                  <NavDropdown.Item as={NavLink} to="/profile">
+                  <NavDropdown.Item as={NavLink} to="/customer-home/profile">
                     My Profile
                   </NavDropdown.Item>
                   <NavDropdown.Divider />

@@ -1,9 +1,11 @@
 import React from "react";
-
+import { Button } from "react-bootstrap";
+import { Navigate, useNavigate } from "react-router-dom";
+import HomePage from "./homePage/HomePage";
 const ProfileCustomer = () => {
   // Lấy thông tin người dùng từ localStorage
   const user = JSON.parse(localStorage.getItem("user"));
-
+  const navigate = useNavigate();
   // Kiểm tra nếu không có thông tin người dùng, chuyển hướng đến trang đăng nhập
   if (!user) {
     return <Navigate to="/login" />;
@@ -20,6 +22,7 @@ const ProfileCustomer = () => {
           <strong>Email:</strong> {user.email}
         </p>
       </div>
+      <Button onClick={() => navigate(-1)}>Trở lại</Button>
     </div>
   );
 };

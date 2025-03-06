@@ -17,7 +17,8 @@ const HomePage = () => {
   }, []);
 
   const handleArticelClick = (id) => {
-    navigate(`/detail/${id}`);
+    navigate(`/customer-home/detail/${id}`);
+    console.log("Click Articel!");
   }; // Đã thêm dấu đóng ngoặc nhọn cho hàm handleArticelClick
 
   return (
