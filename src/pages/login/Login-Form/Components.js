@@ -7,25 +7,6 @@ export const IconRow = styled.div`
   margin: 15px 15px; // Add some space below the icons
 `;
 
-export const SocialIcon = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 40px;
-  border: 1px solid #ccc;
-  border-radius: 15px;
-  background-color: #f6f5f7; // Set background color
-  color: #333; // Icon color
-  font-size: 18px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-
-  &:hover {
-    background-color: #ddd; // Background color on hover
-    color: #ff416c; // Icon color on hover
-  }
-`;
 export const Container = styled.div`
   background-color: #fff;
   border-radius: 30px;

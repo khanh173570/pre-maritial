@@ -25,10 +25,7 @@ const Login = ({ termsRef }) => {
     try {
       const response = await axios.post(
         "http://localhost:8080/api/auth/login",
-        {
-          email,
-          password,
-        }
+        { email, password }
       );
 
       if (response.data.success) {
@@ -47,13 +44,44 @@ const Login = ({ termsRef }) => {
             navigate("/therapist-home");
             break;
           default:
-            setError("Role không hợp lệ");
+            Swal.fire({
+              icon: "error",
+              title: "Lỗi",
+              text: "Role không hợp lệ!",
+            });
         }
-      } else {
-        setError("Đăng nhập thất bại");
       }
     } catch (err) {
-      setError("Lỗi kết nối đến server");
+      if (err.response) {
+        // Xử lý lỗi từ server (HTTP 400, 401, 403, ...)
+        if (err.response.status === 401) {
+          Swal.fire({
+            icon: "error",
+            title: "Sai tài khoản hoặc mật khẩu",
+            text: "Vui lòng kiểm tra lại thông tin đăng nhập!",
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Lỗi",
+            text: err.response.data.message || "Đã có lỗi xảy ra!",
+          });
+        }
+      } else if (err.request) {
+        // Không nhận được phản hồi từ server (lỗi mạng)
+        Swal.fire({
+          icon: "error",
+          title: "Lỗi kết nối",
+          text: "Không thể kết nối đến server. Vui lòng thử lại!",
+        });
+      } else {
+        // Lỗi khác (ví dụ: lỗi code JS)
+        Swal.fire({
+          icon: "error",
+          title: "Lỗi",
+          text: "Có lỗi xảy ra. Vui lòng thử lại!",
+        });
+      }
     }
   };
 
