@@ -8,10 +8,10 @@ import { Link } from "react-router-dom";
 import "./Login.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { validateEmail } from "../../../utils/validation/valAdd.js";
 
-const Login = ({ termsRef }) => {
+const Login = () => {
   const [signIn, setSignIn] = useState(true);
-  const [error, setError] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -22,6 +22,37 @@ const Login = ({ termsRef }) => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    // Kiểm tra nếu email hoặc password bị trống
+    if (!email.trim() || !password.trim()) {
+      Swal.fire({
+        icon: "error",
+        title: "Lỗi đăng nhập",
+        text: "Vui lòng nhập email và mật khẩu!",
+      });
+      return; // Dừng thực hiện hàm nếu có trường trống
+    }
+
+    // Kiểm tra email hợp lệ trước khi gửi request
+    if (!validateEmail(email)) {
+      Swal.fire({
+        icon: "error",
+        title: "Email không hợp lệ",
+        text: "Vui lòng nhập địa chỉ Gmail hợp lệ (14-26 ký tự).",
+      });
+      return;
+    }
+
+    // Kiểm tra mật khẩu có tối thiểu 6 ký tự
+    if (password.length < 3) {
+      Swal.fire({
+        icon: "error",
+        title: "Mật khẩu không hợp lệ",
+        text: "Mật khẩu phải có ít nhất 6 ký tự.",
+      });
+      return;
+    }
+
     try {
       const response = await axios.post(
         "http://localhost:8080/api/auth/login",
@@ -125,11 +156,6 @@ const Login = ({ termsRef }) => {
     setIsSubmitting(false);
   };
 
-  // const handleTermsClick = (e) => {
-  //   e.preventDefault();
-  //   termsRef.current.scrollIntoView({ behavior: "smooth" });
-  // };
-
   return (
     <>
       <div className="login-container">
@@ -173,7 +199,6 @@ const Login = ({ termsRef }) => {
                     I agree to the{" "}
                     <Link
                       type="button"
-                      // onClick={handleTermsClick}
                       style={{ color: "#ff416c", textDecoration: "underline" }}
                     >
                       terms of service
