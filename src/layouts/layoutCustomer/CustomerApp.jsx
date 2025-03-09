@@ -39,29 +39,21 @@ function CustomerApp() {
     };
   }, [lastScrollY]);
 
-  // Hàm xử lý khi bấm vào nút cuộn lên đầu trang
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" }); // Cuộn mượt mà lên đầu trang
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
-    <div className="customer-app">
-      {/* Header hiển thị hoặc ẩn khi cuộn */}
+    <div>
       <div className={`header ${isVisible ? "visible" : "hidden"}`}>
         <Header />
       </div>
-
-      {/* Nội dung chính của trang */}
       <div className="main">
         <Outlet />
       </div>
-
-      {/* Footer luôn hiển thị */}
-      {/* <div className="footer">
+      <div className="footer">
         <Footer />
-      </div> */}
-
-      {/* Nút cuộn lên đầu trang */}
+      </div>
       {showScroll && (
         <button className="scroll-to-top" onClick={scrollToTop}>
           <FaArrowUp />

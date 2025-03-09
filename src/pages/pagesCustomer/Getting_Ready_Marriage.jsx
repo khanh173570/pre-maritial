@@ -5,8 +5,8 @@ const Getting_Ready_Marriage = () => {
   const navigate = useNavigate();
   return (
     <div>
-      <h1>Marriage Readiness</h1>
-      <p>This is the Marriage Readiness page.</p>
+      <h1>Getting_Ready_Marriage</h1>
+      <p>This is the Marriage Getting_Ready_Marriage page.</p>
 
       <Button variant="primary" onClick={() => navigate(-1)}>
         Quay lại

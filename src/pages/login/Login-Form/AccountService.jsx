@@ -1,7 +1,6 @@
-// AccountService.jsx
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api/auth"; // Cấu trúc API chung
+const API_URL = "http://54.179.45.72:8080/api/auth"; // Cập nhật API mới
 
 // Hàm lấy danh sách tài khoản (nếu cần)
 export const fetchAccounts = async () => {
@@ -21,7 +20,7 @@ export const validateCredentials = async (email, password) => {
     return response.data;
   } catch (error) {
     console.error("Error validating credentials:", error);
-    return null; // Trả về null nếu lỗi
+    return null;
   }
 };
 
@@ -32,7 +31,7 @@ export const createAccount = async (username, email, password) => {
       username,
       email,
       password,
-      role: "customer", // Mặc định là khách hàng
+      roleId: 3, // Mặc định roleId là 3 (customer)
       status: true,
       created_date: new Date().toISOString(),
     });

@@ -28,7 +28,10 @@ function ComponentsHeader() {
       style={{ height: "100px" }}
     >
       <Container>
-        <Navbar.Brand href="/" className="fw-bold d-flex align-items-center">
+        <Navbar.Brand
+          href="/customer-home"
+          className="fw-bold d-flex align-items-center"
+        >
           <img
             src={PRE}
             width="50px"

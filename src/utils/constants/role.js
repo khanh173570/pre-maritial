@@ -1,3 +1,3 @@
-export const CUSTOMER = "customer";
-export const ADMIN = "admin";
-export const THERAPIST = "therapist";
+export const CUSTOMER = 3;
+export const ADMIN = 1;
+export const THERAPIST = 2;
