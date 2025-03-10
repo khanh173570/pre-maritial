@@ -24,7 +24,11 @@ import Great_Marriage_Vows from "./pages/pagesCustomer/Great_Marriage_Vows";
 import Pre_MarriageAdvice from "./pages/pagesCustomer/Pre_MarriageAdvice";
 import Marriage_Preparation_Tips from "./pages/pagesCustomer/Marriage_Preparation_Tips";
 import PageAdmin from "./pages/pagesAdmin/pagesAdmin";
+//import admin pages
+import Dashboard from "./pages/pagesAdmin/Dashboard";
 import Pagetest from "./pages/pagesAdmin/page01";
+import AccountManagement from "./pages/pagesAdmin/AccountManagement";
+
 import { CUSTOMER, THERAPIST, ADMIN } from "./utils/constants/role";
 import PagesTherapist from "./pages/pagesTherapist/PagesTherapist";
 
@@ -69,7 +73,8 @@ const App = () => {
 
         <Route element={<AdminApp />}>
           <Route path="/admin-home" element={<PageAdmin />} />
-          <Route path="/admin-test" element={<Pagetest />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/accounts" element={<AccountManagement />} />
         </Route>
 
         <Route element={<TherapistApp />}>

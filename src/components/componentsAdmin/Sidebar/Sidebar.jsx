@@ -13,8 +13,9 @@ import { Link } from "react-router-dom";
 function Sidebar({ openSidebarToggle, openSideBar }) {
   return (
     <aside
-      id="sidebar"
-      className={openSidebarToggle ? "sidebar-responsive" : ""}
+      id=""
+      className={`sidebar ${openSidebarToggle ? "sidebar-responsive" : ""}`}
+      style={{ paddingTop: "50px" }}
     >
       <div className="sidebar-title">
         <div className="welcome-card">
@@ -27,19 +28,19 @@ function Sidebar({ openSidebarToggle, openSideBar }) {
 
       <ul className="sidebar-list">
         <li className="sidebar-list-item">
-          <a href="">
+          <Link to="/dashboard">
             <BsGrid1X2Fill className="icon" /> Dashboard
-          </a>
+          </Link>
         </li>
         <li className="sidebar-list-item">
-          <a href="">
+          <Link to="/articles">
             <BsTextParagraph className="icon" /> Articles
-          </a>
+          </Link>
         </li>
         <li className="sidebar-list-item">
-          <a href="">
+          <Link to="/accounts">
             <BsPersonCircle className="icon" /> Accounts
-          </a>
+          </Link>
         </li>
         <li className="sidebar-list-item">
           <a href="">
