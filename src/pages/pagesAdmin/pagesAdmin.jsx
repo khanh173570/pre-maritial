@@ -35,3 +35,5 @@ const AdminHome = () => {
 };
 
 export default AdminHome;
+
+//CRUD therapist

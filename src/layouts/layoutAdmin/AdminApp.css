@@ -62,7 +62,7 @@ body {
 }
 
 /* Header  */
-.header {
+.header-admin {
   grid-area: header;
   height: 60px;
   display: flex;

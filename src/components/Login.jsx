@@ -29,7 +29,7 @@ const Auth = () => {
             navigate("/");
             break;
           case "admin":
-            navigate("/admin-home");
+            navigate("/admin-test");
             break;
           case "therapist":
             navigate("/therapist-home");
