@@ -73,31 +73,31 @@ function Dashboard() {
         <h3>DASHBOARD</h3>
       </div>
       <div className="main-cards">
-        <div className="card">
-          <div className="card-inner">
+        <div className="card-admin">
+          <div className="card-admin-inner">
             <h3>Articles</h3>
-            <BsTextParagraph className="card_icon" />
+            <BsTextParagraph className="card-admin_icon" />
           </div>
           <h1>123</h1>
         </div>
-        <div className="card">
-          <div className="card-inner">
+        <div className="card-admin">
+          <div className="card-admin-inner">
             <h3>Member</h3>
-            <BsPerson className="card_icon" />
+            <BsPerson className="card-admin_icon" />
           </div>
           <h1>123</h1>
         </div>
-        <div className="card">
-          <div className="card-inner">
+        <div className="card-admin">
+          <div className="card-admin-inner">
             <h3>Wallet</h3>
-            <BsWalletFill className="card_icon" />
+            <BsWalletFill className="card-admin_icon" />
           </div>
           <h1>123$</h1>
         </div>
-        <div className="card">
-          <div className="card-inner">
+        <div className="card-admin">
+          <div className="card-admin-inner">
             <h3>Wallet</h3>
-            <BsWalletFill className="card_icon" />
+            <BsWalletFill className="card-admin_icon" />
           </div>
           <h1>123$</h1>
         </div>
