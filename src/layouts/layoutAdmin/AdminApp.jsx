@@ -5,11 +5,14 @@ import Footer from "../../components/componentsAdmin/componentsFooter/components
 function AdminApp() {
   return (
     <>
-      <div className="header">
+      <div className="header-admin">
         <Header />
       </div>
       <div className="main">
         <Outlet />
+      </div>
+      <div className="footers">
+        <Footer />
       </div>
     </>
   );
