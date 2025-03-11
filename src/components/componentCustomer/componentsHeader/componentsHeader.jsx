@@ -70,46 +70,19 @@ function ComponentsHeader() {
                 Marriage Preparation
               </NavDropdown.Item>
             </NavDropdown>
-            <NavDropdown title="Getting Married" id="nav-dropdown">
-              <NavDropdown.Item as={NavLink} to="/pre-marige">
-                Pre Marriage Counselling
-              </NavDropdown.Item>
-              <NavDropdown.Item as={NavLink} to="/readiness">
-                Marriage Readiness
-              </NavDropdown.Item>
-              <NavDropdown.Item as={NavLink} to="/vows">
-                Marriage Vows
-              </NavDropdown.Item>
-              <NavDropdown.Item as={NavLink} to="/marriage-preparation">
-                Marriage Preparation
+            <NavDropdown title="View List Therapister" id="nav-dropdown">
+              <NavDropdown.Item as={NavLink} to="/customer-home/therapists">
+                View List Therapister
               </NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="Getting Married" id="nav-dropdown">
               <NavDropdown.Item as={NavLink} to="/pre-marige">
                 Pre Marriage Counselling
               </NavDropdown.Item>
-              <NavDropdown.Item as={NavLink} to="/readiness">
-                Marriage Readiness
-              </NavDropdown.Item>
-              <NavDropdown.Item as={NavLink} to="/vows">
-                Marriage Vows
-              </NavDropdown.Item>
-              <NavDropdown.Item as={NavLink} to="/marriage-preparation">
-                Marriage Preparation
-              </NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="Getting Married" id="nav-dropdown">
               <NavDropdown.Item as={NavLink} to="/pre-marige">
                 Pre Marriage Counselling
-              </NavDropdown.Item>
-              <NavDropdown.Item as={NavLink} to="/readiness">
-                Marriage Readiness
-              </NavDropdown.Item>
-              <NavDropdown.Item as={NavLink} to="/vows">
-                Marriage Vows
-              </NavDropdown.Item>
-              <NavDropdown.Item as={NavLink} to="/marriage-preparation">
-                Marriage Preparation
               </NavDropdown.Item>
             </NavDropdown>
 

@@ -9,6 +9,7 @@ import {
   BsXCircle,
 } from "react-icons/bs";
 import { Link, useLocation } from "react-router-dom";
+import View_Therapist from "./../../../pages/pagesAdmin/View_Therapist/View_Therapist";
 
 function Sidebar({ openSidebarToggle, openSideBar }) {
   const location = useLocation();
@@ -64,6 +65,11 @@ function Sidebar({ openSidebarToggle, openSideBar }) {
           <a href="">
             <BsWalletFill className="icon" /> Wallet
           </a>
+        </li>
+        <li className="sidebar-list-item">
+          <Link to="/therapists">
+            <BsTextParagraph className="icon" /> Articles
+          </Link>
         </li>
       </ul>
     </aside>
