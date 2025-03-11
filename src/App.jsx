@@ -37,7 +37,7 @@ import PagesTherapist from "./pages/pagesTherapist/PagesTherapist";
 import GlobalProvider from "./contexts/TherapistContext";
 import View_Therapist_Customer from "./pages/pagesCustomer/View_Therapist/View_Therapist";
 import View_Therapist_Admin from "./pages/pagesAdmin/View_Therapist/View_Therapist";
-
+import ScheduleTherapist from "./pages/pagesCustomer/SchedulePage/SchedulePage";
 const App = () => {
   return (
     <GlobalProvider>
@@ -76,6 +76,10 @@ const App = () => {
               <Route
                 path="view-therapists"
                 element={<View_Therapist_Customer />}
+              />
+              <Route
+                path="/customer-home/view-therapists/schedule/:therapistId"
+                element={<ScheduleTherapist />}
               />
             </Route>
           </Route>

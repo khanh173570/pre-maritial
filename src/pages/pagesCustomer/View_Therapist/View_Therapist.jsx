@@ -1,27 +1,32 @@
 import React, { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Thêm useNavigate
 import { TherapistContext } from "../../../contexts/TherapistContext";
 import "./ViewTherapist.css"; // Import CSS để style grid
 
 const View_Therapist = () => {
   const { therapists, majors, fetchTherapists } = useContext(TherapistContext);
   const [selectedMajor, setSelectedMajor] = useState("");
+  const navigate = useNavigate(); // Khai báo useNavigate
 
   useEffect(() => {
     fetchTherapists();
   }, []);
 
-  // Lọc therapists theo major đã chọn và chỉ lấy những người có isActive === true
+  // Hàm xử lý khi click vào therapist
+  const handleTherapistClick = (therapistId) => {
+    navigate(`/customer-home/view-therapists/schedule/${therapistId}`); // Điều hướng đến trang lịch của therapist
+  };
+
+  // Lọc therapists theo major đã chọn
   const filteredTherapists = therapists.filter(
-    (t) =>
-      // t.isActive === true &&
-      !selectedMajor || t.therapistMajorId === Number(selectedMajor)
+    (t) => !selectedMajor || t.therapistMajorId === Number(selectedMajor)
   );
 
   return (
     <div>
       <h2>Danh sách Therapists</h2>
 
-      {/* Dropdown chọn major */}
+      {/* Dropdown chọn chuyên ngành */}
       <div className="majors-container">
         <select
           className="major-select"
@@ -37,11 +42,15 @@ const View_Therapist = () => {
         </select>
       </div>
 
-      {/* Hiển thị therapists theo grid */}
+      {/* Hiển thị danh sách therapists */}
       <div className="therapists-grid">
         {filteredTherapists.length > 0 ? (
           filteredTherapists.map((therapist) => (
-            <div key={therapist.userId} className="therapist-card">
+            <div
+              key={therapist.userId}
+              className="therapist-card"
+              onClick={() => handleTherapistClick(therapist.userId)} // Thêm sự kiện click
+            >
               <p>
                 <strong>Bio:</strong> {therapist.bio}
               </p>

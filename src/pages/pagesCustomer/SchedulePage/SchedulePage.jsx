@@ -1,31 +1,38 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { TherapistContext } from "../../../contexts/TherapistContext";
+import "./ScheduleTherapist.css";
 
-const SchedulePage = () => {
+const ScheduleTherapist = () => {
   const { therapistId } = useParams();
-  const [schedule, setSchedule] = useState([]);
+  const { schedules, fetchTherapistSchedules } = useContext(TherapistContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(
-      `http://54.179.45.72:8080/therapistSchedules?therapistId=${therapistId}`
-    )
-      .then((response) => response.json())
-      .then((data) => setSchedule(data.content))
-      .catch((error) => console.error("Lỗi khi lấy lịch trình:", error));
+    fetchTherapistSchedules(Number(therapistId));
   }, [therapistId]);
 
   return (
-    <div>
-      <h2>Lịch Trình của Therapist</h2>
-      {schedule.length > 0 ? (
-        <ul>
-          {schedule.map((slot) => (
-            <li
-              key={slot.id}
-              style={{ color: slot.isBooked ? "red" : "green" }}
-            >
-              {slot.availableDate} - {slot.startTime} đến {slot.endTime}{" "}
-              {slot.isBooked ? "(Đã book)" : "(Chưa book)"}
+    <div className="schedule-container">
+      <h2>Lịch trình của Therapist</h2>
+      <button onClick={() => navigate(-1)}>Quay lại</button>
+
+      {schedules.length > 0 ? (
+        <ul className="schedule-list">
+          {schedules.map((schedule) => (
+            <li key={schedule.id} className="schedule-item">
+              <p>
+                <strong>Ngày:</strong> {schedule.date}
+              </p>
+              <p>
+                <strong>Thời gian:</strong> {schedule.startTime} -{" "}
+                {schedule.endTime}
+              </p>
+              <p>
+                <strong>Trạng thái:</strong>{" "}
+                {schedule.isBooked ? "Đã được đặt" : "Còn trống"}
+              </p>
+              {!schedule.isBooked && <button>Book Now</button>}
             </li>
           ))}
         </ul>
@@ -36,4 +43,4 @@ const SchedulePage = () => {
   );
 };
 
-export default SchedulePage;
+export default ScheduleTherapist;
