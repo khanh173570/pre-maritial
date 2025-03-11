@@ -1,6 +1,6 @@
 // import React from 'react';
 import { Outlet } from "react-router-dom";
-import Header from "../../components/componentsAdmin/componentsHeader/componentsHeader";
+import Header from "../../components/componentsAdmin/componentsHeader/ComponentsHeader";
 import Footer from "../../components/componentsAdmin/componentsFooter/componentsFooter";
 function TherapistApp() {
   return (

@@ -11,6 +11,7 @@ const UserTable = ({ users, onDelete, onEdit }) => {
           <th>Username</th>
           <th>RoleID</th>
           <th>Email</th>
+          <th>Is active</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -24,6 +25,7 @@ const UserTable = ({ users, onDelete, onEdit }) => {
             <td>{user.username}</td>
             <td>{user.roleId}</td>
             <td>{user.email}</td>
+            <td>{user.isActive ? "Yes" : "No"}</td>
             <td>
               <Button variant="danger" onClick={() => onDelete(user.id)}>
                 Delete

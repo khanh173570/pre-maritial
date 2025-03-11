@@ -166,15 +166,30 @@ const AccountManagement = () => {
     fetchUsers();
   }, []);
 
+  // const handleDelete = async (userId) => {
+  //   try {
+  //     await deleteUsers(userId);
+  //     setUsers(users.filter((user) => user.id !== userId));
+  //   } catch (error) {
+  //     console.error("Error deleting user:", error);
+  //     setError(error);
+  //   }
+  //   console.log(`Delete user with ID: ${userId}`);
+  // };
+
   const handleDelete = async (userId) => {
     try {
-      await deleteUsers(userId);
-      setUsers(users.filter((user) => user.id !== userId));
+      const response = await deleteUsers(userId);
+      if (response) {
+        setUsers(users.filter((user) => user.id !== userId));
+        console.log(`Deleted user with ID: ${userId}`);
+      } else {
+        console.error("Failed to delete user from the database");
+      }
     } catch (error) {
       console.error("Error deleting user:", error);
       setError(error);
     }
-    console.log(`Delete user with ID: ${userId}`);
   };
 
   const handleEdit = (userId) => {

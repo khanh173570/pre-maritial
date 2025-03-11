@@ -31,6 +31,7 @@ import AccountManagement from "./pages/pagesAdmin/AccountManagement";
 
 import { CUSTOMER, THERAPIST, ADMIN } from "./utils/constants/role";
 import PagesTherapist from "./pages/pagesTherapist/PagesTherapist";
+import UserInfoForm from "./pages/pagesAdmin/UserInfoForm";
 
 const App = () => {
   return (
@@ -75,6 +76,7 @@ const App = () => {
           <Route path="/admin-home" element={<PageAdmin />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/accounts" element={<AccountManagement />} />
+          <Route path="/edit-user/:userId" element={<UserInfoForm />} />
         </Route>
 
         <Route element={<TherapistApp />}>
