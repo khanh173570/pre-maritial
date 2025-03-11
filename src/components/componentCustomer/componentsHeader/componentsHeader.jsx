@@ -71,7 +71,10 @@ function ComponentsHeader() {
               </NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="View List Therapister" id="nav-dropdown">
-              <NavDropdown.Item as={NavLink} to="/customer-home/therapists">
+              <NavDropdown.Item
+                as={NavLink}
+                to="/customer-home/view-therapists"
+              >
                 View List Therapister
               </NavDropdown.Item>
             </NavDropdown>

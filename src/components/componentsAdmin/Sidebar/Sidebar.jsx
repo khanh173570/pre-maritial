@@ -67,7 +67,7 @@ function Sidebar({ openSidebarToggle, openSideBar }) {
           </a>
         </li>
         <li className="sidebar-list-item">
-          <Link to="/therapists">
+          <Link to="/view-therapists">
             <BsTextParagraph className="icon" /> Articles
           </Link>
         </li>

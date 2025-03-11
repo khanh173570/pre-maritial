@@ -73,7 +73,10 @@ const App = () => {
                 path="marriage-preparation"
                 element={<Marriage_Preparation_Tips />}
               />
-              <Route path="therapists" element={<View_Therapist_Customer />} />
+              <Route
+                path="view-therapists"
+                element={<View_Therapist_Customer />}
+              />
             </Route>
           </Route>
 
@@ -83,7 +86,7 @@ const App = () => {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/accounts" element={<AccountManagement />} />
             <Route path="/edit-user/:userId" element={<UserInfoForm />} />
-            <Route path="/therapists" element={<View_Therapist_Admin />} />
+            <Route path="/view-therapists" element={<View_Therapist_Admin />} />
           </Route>
 
           {/* Route cho Therapist */}
