@@ -8,14 +8,15 @@ import {
   BsTextParagraph,
   BsXCircle,
 } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function Sidebar({ openSidebarToggle, openSideBar }) {
+  const location = useLocation();
+
   return (
     <aside
       id=""
       className={`sidebar ${openSidebarToggle ? "sidebar-responsive" : ""}`}
-      style={{ paddingTop: "50px" }}
     >
       <div className="sidebar-title">
         <div className="welcome-card">
@@ -27,7 +28,11 @@ function Sidebar({ openSidebarToggle, openSideBar }) {
       </div>
 
       <ul className="sidebar-list">
-        <li className="sidebar-list-item">
+        <li
+          className={`sidebar-list-item ${
+            location.pathname === "/dashboard" ? "active" : ""
+          }`}
+        >
           <Link to="/dashboard">
             <BsGrid1X2Fill className="icon" /> Dashboard
           </Link>
@@ -37,12 +42,20 @@ function Sidebar({ openSidebarToggle, openSideBar }) {
             <BsTextParagraph className="icon" /> Articles
           </Link>
         </li>
-        <li className="sidebar-list-item">
+        <li
+          className={`sidebar-list-item ${
+            location.pathname === "/accounts" ? "active" : ""
+          }`}
+        >
           <Link to="/accounts">
             <BsPersonCircle className="icon" /> Accounts
           </Link>
         </li>
-        <li className="sidebar-list-item">
+        <li
+          className={`sidebar-list-item ${
+            location.pathname === "/transactions" ? "active" : ""
+          }`}
+        >
           <a href="">
             <BsCurrencyDollar className="icon" /> Transaction
           </a>

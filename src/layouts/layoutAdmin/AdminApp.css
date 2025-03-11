@@ -75,6 +75,35 @@ body {
 .menu-icon {
   display: none;
 }
+/* User card in admin header */
+.user-card {
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.user-card p {
+  margin: 0;
+  padding: 5px 0;
+}
+
+.user-card button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.user-card button:hover {
+  background-color: #0056b3;
+}
 /* End Header  */
 
 /* Sidebar  */
@@ -85,6 +114,15 @@ body {
   overflow-y: auto;
   transition: all 0.5s;
   -webkit-transition: all 0.5s;
+}
+
+.sidebar-list-item.active {
+  background-color: #343a40; /* Darker color for the active item */
+  color: #fff; /* White text color for better contrast */
+}
+
+.sidebar-list-item.active .icon {
+  color: #fff; /* White icon color for better contrast */
 }
 
 .welcome-card {
