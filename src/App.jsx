@@ -43,6 +43,7 @@ const App = () => {
     <GlobalProvider>
       <Router>
         <Routes>
+          <Route path="/customer-home" element={<LoginPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/unauthorized" element={<Unauthorized />} />
 
@@ -99,7 +100,7 @@ const App = () => {
           </Route>
 
           {/* Mặc định chuyển hướng về login nếu route không tồn tại */}
-          <Route path="*" element={<Navigate to="/login" />} />
+          <Route path="*" element={<Navigate to="/customer-home" />} />
         </Routes>
       </Router>
     </GlobalProvider>
