@@ -9,7 +9,7 @@ const getAccessToken = () => {
 export const getUsers = async () => {
   console.log("token", getAccessToken());
   try {
-    const response = await axios.get(`${API_URL}/users?page=1&size=10`, {
+    const response = await axios.get(`${API_URL}/users?page=1&size=99`, {
       headers: {
         Authorization: `Bearer ${getAccessToken()}`,
       },

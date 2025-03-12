@@ -22,7 +22,7 @@ export const validateNewPassword = (newPassword) => {
 };
 export const validateFirstname = (firstname) => {
   const trimmedFirstname = firstname.trim();
-  const namePattern = /^[A-Za-z]+$/; // Only alphabetic characters
+  const namePattern = /^[A-Za-z]+$/;
   return (
     namePattern.test(trimmedFirstname) &&
     trimmedFirstname.length > 0 &&
@@ -32,7 +32,7 @@ export const validateFirstname = (firstname) => {
 
 export const validateLastname = (lastname) => {
   const trimmedLastname = lastname.trim();
-  const namePattern = /^[A-Za-z]+$/; // Only alphabetic characters
+  const namePattern = /^[A-Za-z]+$/;
   return (
     namePattern.test(trimmedLastname) &&
     trimmedLastname.length > 0 &&
@@ -42,7 +42,7 @@ export const validateLastname = (lastname) => {
 
 export const validatePhoneNumber = (phoneNumber) => {
   const trimmedPhoneNumber = phoneNumber.trim();
-  const phoneNumberPattern = /^0\d{9}$/; // Ensure the phone number starts with 0 and is exactly 10 digits
+  const phoneNumberPattern = /^0\d{9}$/;
   return phoneNumberPattern.test(trimmedPhoneNumber);
 };
 

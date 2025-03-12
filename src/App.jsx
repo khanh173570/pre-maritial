@@ -100,7 +100,7 @@ const App = () => {
           </Route>
 
           {/* Mặc định chuyển hướng về login nếu route không tồn tại */}
-          <Route path="*" element={<Navigate to="/customer-home" />} />
+          <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
       </Router>
     </GlobalProvider>
