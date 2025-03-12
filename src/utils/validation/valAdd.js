@@ -8,7 +8,7 @@ export const validateEmail = (email) => {
   return (
     emailRegex.test(trimmedEmail) &&
     trimmedEmail.length >= 8 &&
-    trimmedEmail.length <= 26
+    trimmedEmail.length <= 50
   );
 };
 

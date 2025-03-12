@@ -11,11 +11,12 @@ import { CUSTOMER, ADMIN, THERAPIST } from "../../../utils/constants/role";
 
 const Login = () => {
   const [signIn, setSignIn] = useState(true);
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [isChecked, setIsChecked] = useState(false);
+  const [roleId, setRoleId] = useState("");
+  // const [isChecked, setIsChecked] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
 
@@ -149,7 +150,7 @@ const Login = () => {
     if (isSubmitting) return;
     setIsSubmitting(true);
 
-    if (!username || !email || !password || !confirmPassword) {
+    if (!name || !email || !password || !confirmPassword || !roleId) {
       Swal.fire({
         icon: "error",
         title: "Error",
@@ -170,18 +171,18 @@ const Login = () => {
     }
 
     try {
-      const user = await createAccount(username, email, password);
+      const user = await createAccount(name, email, password, roleId);
       if (user) {
         Swal.fire({
           icon: "success",
           title: "Sign Up Successful",
           timer: 1500,
         });
-        setUsername("");
+        setName("");
         setEmail("");
         setPassword("");
         setConfirmPassword("");
-        setIsChecked(false);
+        // setIsChecked(false);
         setSignIn(true); // Chuyển về màn hình đăng nhập sau khi đăng ký thành công
       }
     } catch (error) {
@@ -203,9 +204,9 @@ const Login = () => {
             <Components.Title>Create Account</Components.Title>
             <Components.Input
               type="text"
-              placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
             <Components.Input
               type="email"
@@ -225,7 +226,13 @@ const Login = () => {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
-            <FormControlLabel
+            <Components.Input
+              type="number"
+              placeholder="Role customer 3, therapist 2"
+              value={roleId}
+              onChange={(e) => setRoleId(e.target.value)}
+            />
+            {/* <FormControlLabel
               control={
                 <Checkbox
                   checked={isChecked}
@@ -243,7 +250,7 @@ const Login = () => {
                   </Link>
                 </>
               }
-            />
+            /> */}
             <Components.Button type="button" onClick={handleSignUp}>
               Sign Up
             </Components.Button>

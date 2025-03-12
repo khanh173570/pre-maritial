@@ -2,10 +2,19 @@ import axios from "axios";
 
 const API_URL = "http://54.179.45.72:8080/api/auth"; // Cập nhật API mới
 
+// Tạo một instance của axios với headers mặc định
+const apiClient = axios.create({
+  baseURL: API_URL,
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${localStorage.getItem("token") || ""}`, // Lấy token từ localStorage nếu có
+  },
+});
+
 // Hàm lấy danh sách tài khoản (nếu cần)
 export const fetchAccounts = async () => {
   try {
-    const response = await axios.get(`${API_URL}/login`);
+    const response = await apiClient.get("/login");
     return response.data;
   } catch (error) {
     console.error("Error fetching accounts:", error);
@@ -16,7 +25,7 @@ export const fetchAccounts = async () => {
 // Hàm xác thực đăng nhập
 export const validateCredentials = async (email, password) => {
   try {
-    const response = await axios.post(`${API_URL}/login`, { email, password });
+    const response = await apiClient.post("/login", { email, password });
     return response.data;
   } catch (error) {
     console.error("Error validating credentials:", error);
@@ -25,15 +34,13 @@ export const validateCredentials = async (email, password) => {
 };
 
 // Hàm đăng ký tài khoản mới
-export const createAccount = async (username, email, password) => {
+export const createAccount = async (name, email, password, roleId) => {
   try {
-    const response = await axios.post(`${API_URL}/register`, {
-      username,
+    const response = await apiClient.post("/register", {
+      name,
       email,
       password,
-      roleId: 3, // Mặc định roleId là 3 (customer)
-      status: true,
-      created_date: new Date().toISOString(),
+      roleId,
     });
 
     return response.data;
