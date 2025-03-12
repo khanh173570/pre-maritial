@@ -99,7 +99,7 @@ const App = () => {
             <Route path="/therapist-home" element={<PagesTherapist />} />
           </Route>
 
-          {/* Mặc định chuyển hướng về login nếu route không tồn tại */}
+          {/* Mặc định chuyển hướng về customer nếu route không tồn tại */}
           <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
       </Router>
