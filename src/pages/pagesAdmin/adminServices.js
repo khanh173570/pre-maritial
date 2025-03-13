@@ -23,6 +23,23 @@ export const getUsers = async () => {
   }
 };
 
+// Thêm user mới
+export const addUser = async (userData) => {
+  try {
+    const token = getAccessToken();
+    console.log("Token:", token); // Log the token
+    const response = await axios.post(`${API_URL}/users`, userData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error adding user:", error);
+    throw error;
+  }
+};
+
 // Xóa user
 export const deleteUsers = async (userId) => {
   try {
@@ -86,6 +103,23 @@ export const getMajors = async () => {
     return response.data.content;
   } catch (error) {
     console.error("Error fetching users:", error);
+    throw error;
+  }
+};
+
+// Thêm major mới
+export const addMajor = async (majorData) => {
+  try {
+    const token = getAccessToken();
+    console.log("Token:", token); // Log the token
+    const response = await axios.post(`${API_URL}/therapistMajors`, majorData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error adding major:", error);
     throw error;
   }
 };

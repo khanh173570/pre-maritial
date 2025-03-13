@@ -32,6 +32,7 @@ import UserInfoForm from "./pages/pagesAdmin/UserInfoForm";
 
 import { CUSTOMER, THERAPIST, ADMIN } from "./utils/constants/role";
 import PagesTherapist from "./pages/pagesTherapist/PagesTherapist";
+import TDashboard from "./pages/pagesTherapist/TDashboard";
 
 // Import Therapist Context
 import GlobalProvider from "./contexts/TherapistContext";
@@ -40,6 +41,8 @@ import View_Therapist_Admin from "./pages/pagesAdmin/View_Therapist/View_Therapi
 import ScheduleTherapist from "./pages/pagesCustomer/SchedulePage/SchedulePage";
 import MajorManagement from "./pages/pagesAdmin/MajorManagement";
 import MajorInfoForm from "./pages/pagesAdmin/MajorInfoForm";
+import AddUserForm from "./pages/pagesAdmin/AddUserForm";
+import AddMajorForm from "./pages/pagesAdmin/AddMajorForm";
 const App = () => {
   return (
     <GlobalProvider>
@@ -104,6 +107,7 @@ const App = () => {
           {/* Route cho Therapist */}
           <Route element={<TherapistApp />}>
             <Route path="/therapist-home" element={<PagesTherapist />} />
+            <Route path="/therapist-dashboard" element={<TDashboard />} />
           </Route>
 
           {/* Mặc định chuyển hướng về customer nếu route không tồn tại */}

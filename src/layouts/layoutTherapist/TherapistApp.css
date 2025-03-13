@@ -1,0 +1,222 @@
+/* src/layouts/layoutTherapist/TherapistApp.css */
+
+/* Main container for the Therapist Layout */
+.therapist-app {
+    display: flex;
+    height: 100vh;
+  }
+  
+  /* Sidebar Styling */
+  .therapist-content {
+    margin-left: 250px;  /* Sidebar width, adjust as needed */
+    width: 100%;
+    padding: 20px;
+  }
+  
+  /* Content area where the page content will go (Dashboard, Schedule, etc.) */
+  .content-area {
+    padding: 20px;
+    overflow-y: auto;
+  }
+  
+  /* Sidebar Styling */
+  .sidebar {
+    width: 250px;
+    background-color: #f8f9fa;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sidebar-title {
+    padding: 20px;
+    text-align: center;
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .welcome-card h3 {
+    margin: 0;
+  }
+  
+  .sidebar-list {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px;
+  }
+  
+  .sidebar-list-item {
+    padding: 15px;
+    font-size: 18px;
+    color: #555;
+    text-align: left;
+    cursor: pointer;
+  }
+  
+  .sidebar-list-item:hover {
+    background-color: #e9ecef;
+  }
+  
+  .sidebar-list-item.active {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .sidebar-list-item a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  
+  .sidebar-responsive {
+    display: none;
+  }
+  
+  /* Header Styling */
+  .header-therapist {
+    background-color: #007bff;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header-left h3 {
+    margin: 0;
+  }
+  
+  .header-right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .icon {
+    font-size: 24px;
+    margin-left: 20px;
+    cursor: pointer;
+  }
+  
+  .user-card {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    color: #333;
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: 200px;
+  }
+  
+  .user-card p {
+    margin: 5px 0;
+  }
+  
+  .user-card button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .user-card button:hover {
+    background-color: #0056b3;
+  }
+  
+  .close_icon {
+    font-size: 30px;
+    color: #333;
+    cursor: pointer;
+    margin-left: auto;
+  }
+  
+  .close_icon:hover {
+    color: #007bff;
+  }
+  
+  /* Styling for Pages (e.g., Dashboard, Schedule, etc.) */
+  .page-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .page-content {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Media Queries for Responsiveness */
+  @media screen and (max-width: 992px) {
+    .therapist-app {
+      flex-direction: column;
+    }
+  
+    .therapist-content {
+      margin-left: 0;
+      padding: 10px;
+    }
+  
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      transition: left 0.3s ease;
+      z-index: 999;
+    }
+  
+    .sidebar-responsive {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+  
+    .sidebar.open {
+      left: 0;
+    }
+  
+    .header-therapist {
+      padding: 15px;
+      justify-content: space-between;
+    }
+  
+    .header-left h3 {
+      font-size: 18px;
+    }
+  
+    .header-right .icon {
+      margin-left: 10px;
+    }
+  }
+  
+  /* For very small screens (e.g., mobile devices) */
+  @media screen and (max-width: 576px) {
+    .icon {
+      font-size: 20px;
+      margin-left: 10px;
+    }
+  
+    .header-therapist {
+      padding: 10px;
+    }
+  
+    .header-left h3 {
+      font-size: 16px;
+    }
+  
+    .sidebar-list-item {
+      font-size: 16px;
+      padding: 12px;
+    }
+  }

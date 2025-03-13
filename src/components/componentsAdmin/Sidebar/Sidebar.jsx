@@ -66,12 +66,20 @@ function Sidebar({ openSidebarToggle, openSideBar }) {
             <BsWalletFill className="icon" /> Wallet
           </a>
         </li>
-        <li className="sidebar-list-item">
+        <li
+          className={`sidebar-list-item ${
+            location.pathname === "/view-therapists" ? "active" : ""
+          }`}
+        >
           <Link to="/view-therapists">
             <BsTextParagraph className="icon" /> Therapists
           </Link>
         </li>
-        <li className="sidebar-list-item">
+        <li
+          className={`sidebar-list-item ${
+            location.pathname === "/view-therapist-major" ? "active" : ""
+          }`}
+        >
           <Link to="/view-therapist-major">
             <BsTextParagraph className="icon" /> Majors
           </Link>

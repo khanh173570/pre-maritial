@@ -1,0 +1,68 @@
+/* src/pages/pagesTherapist/TDashboard.css */
+
+.tdashboard {
+    padding: 20px;
+  }
+  
+  .title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Stats Section */
+  .stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+  
+  .stat-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    flex-basis: 23%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .stat-card h3 {
+    margin: 10px 0;
+  }
+  
+  .stat-card p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  /* Icon Styling */
+  .icon {
+    font-size: 40px;
+    color: #007bff;
+  }
+  
+  /* Charts Section */
+  .charts {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+  }
+  
+  @media (max-width: 768px) {
+    .stats {
+      flex-direction: column;
+      gap: 20px;
+    }
+  
+    .stat-card {
+      flex-basis: 100%;
+    }
+  
+    .charts {
+      flex-direction: column;
+    }
+  }
