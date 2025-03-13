@@ -68,3 +68,79 @@ export const updateUser = async (userId, userData) => {
     throw error;
   }
 };
+
+// Lấy danh sách Majors
+export const getMajors = async () => {
+  console.log("token", getAccessToken());
+  try {
+    const response = await axios.get(
+      `${API_URL}/therapistMajors?page=1&size=99`,
+      {
+        headers: {
+          Authorization: `Bearer ${getAccessToken()}`,
+        },
+      }
+    );
+
+    console.log(response.data.content); // Kiểm tra response
+    return response.data.content;
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    throw error;
+  }
+};
+
+// Xóa major
+export const deleteMajor = async (majorId) => {
+  try {
+    const response = await axios.delete(
+      `${API_URL}/therapistMajors/${majorId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${getAccessToken()}`,
+        },
+      }
+    );
+    console.log(response.data); // Kiểm tra response
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting major:", error);
+    throw error;
+  }
+};
+
+// Lấy thông tin major theo ID
+export const getMajorById = async (majorId) => {
+  try {
+    const token = getAccessToken();
+    const response = await axios.get(`${API_URL}/therapistMajors/${majorId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching major:", error);
+    throw error;
+  }
+};
+
+// Cập nhật thông tin major
+export const updateMajor = async (majorId, majorData) => {
+  try {
+    const token = getAccessToken();
+    const response = await axios.put(
+      `${API_URL}/therapistMajors/${majorId}`,
+      majorData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error updating major:", error);
+    throw error;
+  }
+};

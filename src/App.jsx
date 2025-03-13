@@ -38,6 +38,8 @@ import GlobalProvider from "./contexts/TherapistContext";
 import View_Therapist_Customer from "./pages/pagesCustomer/View_Therapist/View_Therapist";
 import View_Therapist_Admin from "./pages/pagesAdmin/View_Therapist/View_Therapist";
 import ScheduleTherapist from "./pages/pagesCustomer/SchedulePage/SchedulePage";
+import MajorManagement from "./pages/pagesAdmin/MajorManagement";
+import MajorInfoForm from "./pages/pagesAdmin/MajorInfoForm";
 const App = () => {
   return (
     <GlobalProvider>
@@ -92,6 +94,11 @@ const App = () => {
             <Route path="/accounts" element={<AccountManagement />} />
             <Route path="/edit-user/:userId" element={<UserInfoForm />} />
             <Route path="/view-therapists" element={<View_Therapist_Admin />} />
+            <Route path="/view-therapist-major" element={<MajorManagement />} />
+            <Route
+              path="/edit-therapist-major/:majorId"
+              element={<MajorInfoForm />}
+            />
           </Route>
 
           {/* Route cho Therapist */}
