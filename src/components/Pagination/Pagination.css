@@ -18,13 +18,13 @@
   display: block;
   padding: 8px 12px;
   border: 1px solid #dee2e6;
-  color: #9bf0dc;
+  color: #0b5ed7;
   text-decoration: none;
   cursor: pointer;
 }
 
 .pagination .page-item.active .page-link {
-  background-color: #9bf0dc;
+  background-color: #0b5ed7;
   color: white;
-  border: 1px solid #9bf0dc;
+  border: 1px solid #0b5ed7;
 }
