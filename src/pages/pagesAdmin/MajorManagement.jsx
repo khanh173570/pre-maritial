@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { deleteMajor, getMajors } from "./adminServices";
+import { Button } from "react-bootstrap";
 import MajorsTable from "../../components/componentsAdmin/majorsTable/MajorsTable";
 
 const MajorManagement = () => {
@@ -44,6 +45,10 @@ const MajorManagement = () => {
     navigate(`/edit-therapist-major/${majorId}`);
   };
 
+  const handleAddClick = () => {
+    navigate("/majors/new");
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -55,6 +60,15 @@ const MajorManagement = () => {
   return (
     <div>
       <h1>Major Management</h1>
+      <span>
+        <Button
+          variant="primary"
+          onClick={handleAddClick}
+          style={{ marginBottom: 10 }}
+        >
+          Add Major
+        </Button>
+      </span>
       <MajorsTable
         majors={majors}
         onDelete={handleDelete}

@@ -3,6 +3,7 @@ import { deleteUsers, getUsers } from "./adminServices";
 import { useNavigate } from "react-router-dom";
 import UserTable from "../../components/componentsAdmin/userTable/UserTable";
 import { Pagination } from "../../components/Pagination/Pagination";
+import { Button } from "react-bootstrap";
 
 const AccountManagement = () => {
   const [users, setUsers] = useState([]);
@@ -45,6 +46,10 @@ const AccountManagement = () => {
     navigate(`/edit-user/${userId}`);
   };
 
+  const handleAddUser = () => {
+    navigate("/users/new");
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -61,6 +66,13 @@ const AccountManagement = () => {
   return (
     <div>
       <h1>Account Management</h1>
+      <Button
+        variant="primary"
+        onClick={handleAddUser}
+        style={{ marginBottom: 10 }}
+      >
+        Add User
+      </Button>
       <UserTable
         users={currentPosts}
         onDelete={handleDelete}

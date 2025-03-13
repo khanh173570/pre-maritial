@@ -1,60 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { getUserById, updateUser } from "./adminServices";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { addUser } from "./adminServices"; // You need to implement this function in adminServices.js
 import { Form, Button, Alert } from "react-bootstrap";
-import {
-  validateFirstname,
-  validateLastname,
-  validateEmail,
-  validateAddress,
-} from "../../utils/validation/valAdd";
 
-const UserInfoForm = () => {
-  const { userId } = useParams();
+const AddUserForm = () => {
   const [user, setUser] = useState({
     firstName: "",
     lastName: "",
     email: "",
     username: "",
-    roleId: "",
+    roleId: 1,
     street: "",
     city: "",
     state: "",
     postalCode: "",
     country: "",
-    isActive: false,
+    isActive: true,
   });
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [validationError, setValidationError] = useState("");
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const data = await getUserById(userId);
-        setUser({
-          firstName: data.firstName || "",
-          lastName: data.lastName || "",
-          email: data.email || "",
-          username: data.username || "",
-          roleId: data.roleId || "",
-          street: data.street || "",
-          city: data.city || "",
-          state: data.state || "",
-          postalCode: data.postalCode || "",
-          country: data.country || "",
-          isActive: data.isActive || false,
-        });
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchUser();
-  }, [userId]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -65,29 +30,17 @@ const UserInfoForm = () => {
   };
 
   const validateForm = () => {
-    if (!validateFirstname(user.firstName)) {
-      return "First name must be between 1 and 20 characters and contain only letters.";
+    if (user.firstName.trim() === "") {
+      return "First name is required.";
     }
-    if (!validateLastname(user.lastName)) {
-      return "Last name must be between 1 and 20 characters and contain only letters.";
+    if (user.lastName.trim() === "") {
+      return "Last name is required.";
     }
-    if (!validateEmail(user.email)) {
-      return "Email must be a valid Gmail address.";
+    if (user.email.trim() === "") {
+      return "Email is required.";
     }
-    if (!validateAddress(user.street)) {
-      return "Street must be between 1 and 50 characters.";
-    }
-    if (!validateAddress(user.city)) {
-      return "City must be between 1 and 50 characters.";
-    }
-    if (!validateAddress(user.state)) {
-      return "State must be between 1 and 50 characters.";
-    }
-    if (!validateAddress(user.postalCode)) {
-      return "Postal code must be between 1 and 50 characters.";
-    }
-    if (!validateAddress(user.country)) {
-      return "Country must be between 1 and 50 characters.";
+    if (user.username.trim() === "") {
+      return "Username is required.";
     }
     return "";
   };
@@ -100,21 +53,14 @@ const UserInfoForm = () => {
       return;
     }
     try {
-      console.log("Updating user with data:", user); // Log the request data
-      await updateUser(userId, user);
-      navigate("/accounts"); // Navigate back to the accounts page after successful update
-    } catch (error) {
-      setError(error);
+      console.log("Adding user with data:", user); // Log the request data
+      await addUser(user);
+      navigate("/accounts"); // Navigate back to the accounts page after successful addition
+    } catch (err) {
+      setError(err);
+      console.log("Error adding user:", error);
     }
   };
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -144,7 +90,6 @@ const UserInfoForm = () => {
           name="email"
           value={user.email}
           onChange={handleChange}
-          disabled
         />
       </Form.Group>
       <Form.Group controlId="formUsername">
@@ -163,7 +108,6 @@ const UserInfoForm = () => {
           name="roleId"
           value={user.roleId}
           onChange={handleChange}
-          disabled
         >
           <option value={1}>Admin</option>
           <option value={2}>Therapist</option>
@@ -230,10 +174,10 @@ const UserInfoForm = () => {
         />
       </Form.Group>
       <Button variant="primary" type="submit">
-        Save
+        Add User
       </Button>
     </Form>
   );
 };
 
-export default UserInfoForm;
+export default AddUserForm;
