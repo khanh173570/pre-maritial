@@ -42,6 +42,7 @@ import MajorManagement from "./pages/pagesAdmin/MajorManagement";
 import MajorInfoForm from "./pages/pagesAdmin/MajorInfoForm";
 import AddUserForm from "./pages/pagesAdmin/AddUserForm";
 import AddMajorForm from "./pages/pagesAdmin/AddMajorForm";
+import Transactions from "./pages/pagesAdmin/Transactions";
 const App = () => {
   return (
     <GlobalProvider>
@@ -94,6 +95,7 @@ const App = () => {
             <Route path="/admin-home" element={<PageAdmin />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/accounts" element={<AccountManagement />} />
+            <Route path="/transactions" element={<Transactions />} />
             <Route path="/users/new" element={<AddUserForm />} />
             <Route path="/edit-user/:userId" element={<UserInfoForm />} />
             <Route path="/view-therapists" element={<View_Therapist_Admin />} />

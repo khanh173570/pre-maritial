@@ -5,6 +5,7 @@ const getAccessToken = () => {
   return localStorage.getItem("token");
 };
 
+//===========================User Management===========================
 // Lấy danh sách users
 export const getUsers = async () => {
   console.log("token", getAccessToken());
@@ -85,6 +86,8 @@ export const updateUser = async (userId, userData) => {
     throw error;
   }
 };
+
+//===========================Major Management===========================
 
 // Lấy danh sách Majors
 export const getMajors = async () => {
@@ -175,6 +178,23 @@ export const updateMajor = async (majorId, majorData) => {
     return response.data;
   } catch (error) {
     console.error("Error updating major:", error);
+    throw error;
+  }
+};
+
+//===========================Transactions===========================
+//Lấy danh sách transactions
+export const getTransactions = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/transactions?page=1&size=99`, {
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`,
+      },
+    });
+    // return response.data.content;
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching transactions:", error);
     throw error;
   }
 };

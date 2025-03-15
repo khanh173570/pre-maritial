@@ -57,9 +57,9 @@ function Sidebar({ openSidebarToggle, openSideBar }) {
             location.pathname === "/transactions" ? "active" : ""
           }`}
         >
-          <a href="">
+          <Link to="/transactions">
             <BsCurrencyDollar className="icon" /> Transaction
-          </a>
+          </Link>
         </li>
         <li className="sidebar-list-item">
           <a href="">
