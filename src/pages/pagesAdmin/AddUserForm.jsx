@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { addUser } from "./adminServices"; // You need to implement this function in adminServices.js
+import { addUser } from "./adminServices";
 import { Form, Button, Alert } from "react-bootstrap";
 
 const AddUserForm = () => {
@@ -9,7 +9,7 @@ const AddUserForm = () => {
     lastName: "",
     email: "",
     username: "",
-    roleId: 1,
+    roleId: 3,
     street: "",
     city: "",
     state: "",
@@ -25,7 +25,7 @@ const AddUserForm = () => {
     const { name, value } = e.target;
     setUser((prevUser) => ({
       ...prevUser,
-      [name]: value,
+      [name]: name === "roleId" ? Number(value) : value,
     }));
   };
 
