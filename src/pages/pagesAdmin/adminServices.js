@@ -29,6 +29,7 @@ export const addUser = async (userData) => {
   try {
     const token = getAccessToken();
     console.log("Token:", token); // Log the token
+    console.log("User Data:", userData); // Log the user data
     const response = await axios.post(`${API_URL}/users`, userData, {
       headers: {
         Authorization: `Bearer ${token}`,
