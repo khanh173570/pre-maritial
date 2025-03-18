@@ -192,8 +192,23 @@ export const getTransactions = async () => {
         Authorization: `Bearer ${getAccessToken()}`,
       },
     });
-    // return response.data.content;
     return response.data;
+  } catch (error) {
+    console.error("Error fetching transactions:", error);
+    throw error;
+  }
+};
+
+//Lấy danh sách transactions cho dashboard
+export const getTransactionsForDashboard = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/transactions?page=1&size=99`, {
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`,
+      },
+    });
+    // return response.data.content;
+    return response.data.content;
   } catch (error) {
     console.error("Error fetching transactions:", error);
     throw error;

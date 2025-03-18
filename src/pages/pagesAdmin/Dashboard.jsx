@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   BsCurrencyDollar,
   BsWalletFill,
@@ -20,6 +20,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { getUsers, getTransactionsForDashboard } from "./adminServices";
 
 function Dashboard() {
   const data = [
@@ -67,6 +68,37 @@ function Dashboard() {
     },
   ];
 
+  const [customerCount, setCustomerCount] = useState(0);
+  const [therapistCount, setTherapistCount] = useState(0);
+  const [totalTransactions, setTotalTransactions] = useState(0);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const users = await getUsers();
+        const customerCount = users.filter((user) => user.roleId === 3).length;
+        const therapistCount = users.filter((user) => user.roleId === 2).length;
+        setCustomerCount(customerCount);
+        setTherapistCount(therapistCount);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    const fetchTransactionData = async () => {
+      try {
+        const transactions = await getTransactionsForDashboard();
+        console.log("Fetched transactions:", transactions);
+        setTotalTransactions(transactions.length);
+      } catch (error) {
+        console.error("Error fetching transaction data:", error);
+      }
+    };
+
+    fetchUserData();
+    fetchTransactionData();
+  }, []);
+
   return (
     <main className="main-container">
       <div className="main-title">
@@ -82,24 +114,24 @@ function Dashboard() {
         </div>
         <div className="card-admin">
           <div className="card-admin-inner">
-            <h3>Member</h3>
+            <h3>Customer</h3>
             <BsPerson className="card-admin_icon" />
           </div>
-          <h1>123</h1>
+          <h1>{customerCount}</h1>
         </div>
         <div className="card-admin">
           <div className="card-admin-inner">
-            <h3>Wallet</h3>
-            <BsWalletFill className="card-admin_icon" />
+            <h3>Therapist</h3>
+            <BsPerson className="card-admin_icon" />
           </div>
-          <h1>123$</h1>
+          <h1>{therapistCount}</h1>
         </div>
         <div className="card-admin">
           <div className="card-admin-inner">
-            <h3>Wallet</h3>
+            <h3>Total Transactions</h3>
             <BsWalletFill className="card-admin_icon" />
           </div>
-          <h1>123$</h1>
+          <h1>{totalTransactions}</h1>
         </div>
       </div>
 
