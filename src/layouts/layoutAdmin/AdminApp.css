@@ -32,7 +32,7 @@ body {
 .icon {
   vertical-align: middle;
   line-height: 1px;
-  font-size: 20px;
+  font-size: 30px;
 }
 .icon_header {
   vertical-align: middle;
@@ -70,6 +70,8 @@ body {
   justify-content: space-between;
   padding: 0 30px 0 30px;
   box-shadow: 0 6px 7px -3px rgba(0, 0, 0, 0.35);
+  background-color: #ffffff; /* Add a solid background color */
+  z-index: 10; /* Ensure it appears above other elements */
 }
 
 .menu-icon {
@@ -125,6 +127,44 @@ body {
   color: #fff; /* White icon color for better contrast */
 }
 
+.sidebar-list-item a:hover {
+  color: #343a40; /* Change to your desired hover color */
+}
+
+.admin-profile {
+  display: flex; /* Use Flexbox */
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  background-color: #f8f9fa; /* Light background to contrast with the sidebar */
+  padding: 20px;
+  border-radius: 8px; /* Rounded corners */
+  margin-left: 20px; /* Center horizontally with auto margin */
+  text-align: center; /* Center-align the text */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+  width: 80%; /* Adjust width to fit nicely in the sidebar */
+}
+
+.admin-profile-pic {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%; /* Make the image circular */
+  margin-bottom: 10px;
+  border: 2px solid #dee2e6; /* Add a border around the image */
+}
+
+.admin-profile-info h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #343a40; /* Darker text for better readability */
+}
+
+.admin-profile-info p {
+  margin: 0;
+  font-size: 12px;
+  color: #6c757d; /* Subtle text color for the role */
+}
+
 .welcome-card {
   background: white; /* Card background */
   padding: 20px;
@@ -149,6 +189,7 @@ body {
 
 .sidebar-brand {
   margin-top: 15px;
+  margin-left: 30px;
   font-size: 20px;
   font-weight: 700;
 }

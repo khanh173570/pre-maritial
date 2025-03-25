@@ -92,13 +92,14 @@ const App = () => {
 
           {/* Route cho Admin */}
           <Route element={<AdminApp />}>
+            {/* <Route element={<Dashboard />}> */}
             <Route path="/admin-home" element={<PageAdmin />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/accounts" element={<AccountManagement />} />
             <Route path="/transactions" element={<Transactions />} />
             <Route path="/users/new" element={<AddUserForm />} />
             <Route path="/edit-user/:userId" element={<UserInfoForm />} />
-            <Route path="/view-therapists" element={<View_Therapist_Admin />} />
+            {/* <Route path="/view-therapists" element={<View_Therapist_Admin />} /> */}
             <Route path="/view-therapist-major" element={<MajorManagement />} />
             <Route path="/majors/new" element={<AddMajorForm />} />
             <Route

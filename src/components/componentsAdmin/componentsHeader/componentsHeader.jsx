@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  BsFillBellFill,
-  BsFillEnvelopeFill,
-  BsPersonCircle,
-  BsHeartFill,
-  BsJustify,
-} from "react-icons/bs";
+import { BsPersonCircle, BsHeartFill, BsJustify } from "react-icons/bs";
 import UserCard from "../userCard/UserCard";
 import { useNavigate } from "react-router-dom";
 
@@ -48,14 +42,10 @@ const ComponentsHeader = ({ openSideBar }) => {
       <div className="menu-icon">
         <BsJustify className="icon" onClick={openSideBar} />
       </div>
-      <div className="header-left">
-        <div className="sidebar-brand">
-          <BsHeartFill className="icon_header" /> PreMarital
-        </div>
-      </div>
+      <div className="header-left"></div>
       <div className="header-right">
-        <BsFillBellFill className="icon" />
-        <BsFillEnvelopeFill className="icon" />
+        {/* <BsFillBellFill className="icon" />
+        <BsFillEnvelopeFill className="icon" /> */}
         <BsPersonCircle className="icon" onClick={toggleUserCard} />
         {showUserCard && (
           <UserCard username={username} email={email} onLogout={handleLogout} />

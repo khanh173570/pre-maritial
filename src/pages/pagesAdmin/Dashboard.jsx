@@ -166,7 +166,7 @@ function Dashboard() {
           </BarChart>
         </ResponsiveContainer>
 
-        <ResponsiveContainer width="100%" height="100%">
+        {/* <ResponsiveContainer width="100%" height="100%">
           <LineChart
             width={500}
             height={300}
@@ -191,7 +191,7 @@ function Dashboard() {
             />
             <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
           </LineChart>
-        </ResponsiveContainer>
+        </ResponsiveContainer> */}
       </div>
     </main>
   );
