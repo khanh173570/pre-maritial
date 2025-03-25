@@ -21,7 +21,7 @@ function Sidebar({ openSidebarToggle, openSideBar }) {
           <h3>Welcome Therapist</h3>
         </div>
         <span className="icon close_icon" onClick={openSideBar}>
-          <BsXCircle />
+        
         </span>
       </div>
 
