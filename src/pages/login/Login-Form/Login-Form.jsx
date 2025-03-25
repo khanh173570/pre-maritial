@@ -87,7 +87,7 @@ const Login = () => {
         // }
         switch (response.data.userDto.roleId) {
           case ADMIN:
-            navigate("/admin-home");
+            navigate("/dashboard");
             break;
           case THERAPIST:
             navigate("/therapist-home");
