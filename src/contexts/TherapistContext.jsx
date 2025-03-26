@@ -14,30 +14,33 @@ export const GlobalProvider = ({ children }) => {
     try {
       const token = getToken();
       if (!token) throw new Error("Không tìm thấy token!");
-
+  
+      console.log("Token:", token); // Debug: Check if the token is present
+  
       const headers = {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       };
-
+  
       const resMajors = await fetch(
         "http://54.179.45.72:8080/therapistMajors?page=1&size=99",
         { method: "GET", headers }
       );
       const dataMajors = await resMajors.json();
+      console.log("Majors data:", dataMajors); // Debug: Check the majors data
       setMajors(dataMajors.content);
-
+  
       const resTherapists = await fetch(
         "http://54.179.45.72:8080/therapists?page=1&size=99",
         { method: "GET", headers }
       );
       const dataTherapists = await resTherapists.json();
+      console.log("Therapists data:", dataTherapists); // Debug: Check the therapists data
       setTherapists(dataTherapists.content);
     } catch (error) {
       console.error("Lỗi khi lấy dữ liệu therapists:", error);
     }
   };
-
   // Lấy lịch trình của therapist theo therapistId
   const fetchTherapistSchedules = async (therapistId) => {
     try {

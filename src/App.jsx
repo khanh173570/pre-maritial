@@ -32,6 +32,7 @@ import UserInfoForm from "./pages/pagesAdmin/UserInfoForm";
 
 import { CUSTOMER, THERAPIST, ADMIN } from "./utils/constants/role";
 import PagesTherapist from "./pages/pagesTherapist/PagesTherapist";
+import TherapistProfile from "./pages/pagesTherapist/TherapistProfile";
 
 // Import Therapist Context
 import GlobalProvider from "./contexts/TherapistContext";
@@ -113,6 +114,11 @@ const App = () => {
           {/* Route cho Therapist */}
           <Route element={<TherapistApp />}>
             <Route path="/therapist-home" element={<PagesTherapist />} />
+            <Route path="/therapist-home/profile" element={<TherapistProfile />} />
+            <Route path="/therapist-home/wallet" element={<div>Wallet Page (Coming Soon)</div>} />
+            <Route path="/therapist-home/schedule" element={<div>Schedule Page (Coming Soon)</div>} />
+            <Route path="/therapist-home/quiz" element={<div>Quiz Page (Coming Soon)</div>} />
+            <Route path="/therapist-home/notifications" element={<div>Notifications Page (Coming Soon)</div>} />
           </Route>
 
           {/* Mặc định chuyển hướng về customer nếu route không tồn tại */}
