@@ -10,7 +10,7 @@ const EditTherapist = () => {
   // Helper function to convert MM/DD/YYYY to YYYY-MM-DD
   const formatDateForInput = (dateString) => {
     if (!dateString) return "";
-    const [month, day, year] = dateString.split("/");
+    const [day, month, year] = dateString.split("/");
     return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
   };
 
@@ -34,6 +34,12 @@ const EditTherapist = () => {
     fetchTherapist();
   }, [userId]);
 
+  const formatDateForAPI = (dateString) => {
+    if (!dateString) return "";
+    const [year, month, day] = dateString.split("-");
+    return `${day}/${month}/${year}`;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default form submission
 
@@ -43,12 +49,14 @@ const EditTherapist = () => {
         bio: therapist.bio || "",
         therapistCertificationName: therapist.therapistCertificationName || "",
         certificationIssuedBy: therapist.certificationIssuedBy || "",
-        certificationIssueDate: therapist.certificationIssueDate || "",
-        certificationExpirationDate:
-          therapist.certificationExpirationDate || "",
+        certificationIssueDate: formatDateForAPI(
+          therapist.certificationIssueDate
+        ),
+        certificationExpirationDate: formatDateForAPI(
+          therapist.certificationExpirationDate
+        ),
         therapistMajorId: therapist.therapistMajorId || 0, // Default to 0 if not provided
         isActive: therapist.isActive !== undefined ? therapist.isActive : true, // Default to true
-        version: therapist.version || 0, // Default to 0 if not provided
       };
 
       console.log("Payload being sent to API:", payload); // Log the payload for debugging
@@ -57,7 +65,7 @@ const EditTherapist = () => {
       await updateTherapist(userId, payload);
 
       alert("Therapist information updated successfully!");
-      navigate("/therapists"); // Redirect to the therapist list page
+      navigate("/view-therapists"); // Redirect to the therapist list page
     } catch (error) {
       console.error("Error updating therapist:", error);
       if (error.response) {
