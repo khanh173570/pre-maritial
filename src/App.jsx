@@ -43,6 +43,7 @@ import MajorInfoForm from "./pages/pagesAdmin/MajorInfoForm";
 import AddUserForm from "./pages/pagesAdmin/AddUserForm";
 import AddMajorForm from "./pages/pagesAdmin/AddMajorForm";
 import Transactions from "./pages/pagesAdmin/Transactions";
+import EditTherapist from "./pages/pagesAdmin/EditTherapist";
 const App = () => {
   return (
     <GlobalProvider>
@@ -99,7 +100,8 @@ const App = () => {
             <Route path="/transactions" element={<Transactions />} />
             <Route path="/users/new" element={<AddUserForm />} />
             <Route path="/edit-user/:userId" element={<UserInfoForm />} />
-            {/* <Route path="/view-therapists" element={<View_Therapist_Admin />} /> */}
+            <Route path="/view-therapists" element={<View_Therapist_Admin />} />
+            <Route path="/edit-therapist/:userId" element={<EditTherapist />} />
             <Route path="/view-therapist-major" element={<MajorManagement />} />
             <Route path="/majors/new" element={<AddMajorForm />} />
             <Route

@@ -8,6 +8,7 @@ import {
   BsTextParagraph,
   BsXCircle,
 } from "react-icons/bs";
+import { BiCalendarEvent, BiUserCircle } from "react-icons/bi";
 import { Link, useLocation } from "react-router-dom";
 import View_Therapist from "./../../../pages/pagesAdmin/View_Therapist/View_Therapist";
 
@@ -93,7 +94,7 @@ function Sidebar({ openSidebarToggle, openSideBar }) {
             <BsWalletFill className="icon" /> Wallet
           </a>
         </li> */}
-        {/* <li
+        <li
           className={`sidebar-list-item ${
             location.pathname === "/view-therapists" ? "active" : ""
           }`}
@@ -101,14 +102,24 @@ function Sidebar({ openSidebarToggle, openSideBar }) {
           <Link to="/view-therapists">
             <BsTextParagraph className="icon" /> Therapists
           </Link>
-        </li> */}
+        </li>
         <li
           className={`sidebar-list-item ${
             location.pathname === "/view-therapist-major" ? "active" : ""
           }`}
         >
           <Link to="/view-therapist-major">
-            <BsTextParagraph className="icon" /> Majors
+            <BiUserCircle className="icon" /> Majors
+          </Link>
+        </li>
+        <li
+          className={`sidebar-list-item ${
+            location.pathname === "" ? "active" : ""
+          }`}
+        >
+          {/* change to proper link later */}
+          <Link to="/">
+            <BiCalendarEvent className="icon" /> Bookings
           </Link>
         </li>
       </ul>

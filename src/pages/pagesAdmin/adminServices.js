@@ -214,3 +214,37 @@ export const getTransactionsForDashboard = async () => {
     throw error;
   }
 };
+
+//Lấy thông tin therapist theo ID
+export const getTherapistById = async (therapistId) => {
+  try {
+    const response = await axios.get(`${API_URL}/therapists/${therapistId}`, {
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching therapist:", error);
+    throw error;
+  }
+};
+
+//Cập nhật thông tin therapist
+export const updateTherapist = async (therapistId, therapistData) => {
+  try {
+    const response = await axios.put(
+      `${API_URL}/therapists/${therapistId}`,
+      therapistData,
+      {
+        headers: {
+          Authorization: `Bearer ${getAccessToken()}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error updating therapist:", error);
+    throw error;
+  }
+};
