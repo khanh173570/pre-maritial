@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { AppBar, Toolbar, Typography, IconButton, Menu, MenuItem, Badge } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import NotificationsIcon from "@mui/icons-material/Notifications"; // Add this import
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet"; // Add this import
 import useAuth from "../../utils/hook/useAuth";
 
 // TherapistHeader.jsx
 // This component displays the header for the therapist dashboard.
-// It includes a link to the notifications page with a badge showing the number of unread notifications.
+// It includes links to the notifications and wallet pages, with a badge showing the number of unread notifications.
 // Currently, the unread count is mocked (hardcoded to 2 for testing).
 // TODO: For the development team
 // 1. Replace the hardcoded unreadCount with a real value.
@@ -42,6 +43,10 @@ const TherapistHeader = () => {
     navigate("/therapist-home/notifications");
   };
 
+  const handleWallet = () => {
+    navigate("/therapist-home/wallet");
+  };
+
   // Mock unread count for testing
   const unreadCount = 2; // This will be updated dynamically by your team
 
@@ -51,6 +56,9 @@ const TherapistHeader = () => {
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           Therapist Dashboard
         </Typography>
+        <IconButton color="inherit" onClick={handleWallet}>
+          <AccountBalanceWalletIcon />
+        </IconButton>
         <IconButton color="inherit" onClick={handleNotifications}>
           <Badge badgeContent={unreadCount} color="error">
             <NotificationsIcon />
