@@ -8,6 +8,7 @@ const View_Therapist = () => {
   const [filteredTherapists, setFilteredTherapists] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const itemsPerPage = 8;
   const navigate = useNavigate();
 
@@ -21,6 +22,7 @@ const View_Therapist = () => {
         console.log(therapistsWithRole);
       } catch (error) {
         console.error("Error fetching therapists:", error);
+        setError("Failed to fetch therapists.");
       } finally {
         setLoading(false);
       }
@@ -39,6 +41,10 @@ const View_Therapist = () => {
 
   if (loading) {
     return <div className="mt-4">Loading...</div>; // Display loading message
+  }
+
+  if (error) {
+    return <div className="text-center mt-4 text-danger">{error}</div>;
   }
 
   // Handle Edit Button Click

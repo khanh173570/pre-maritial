@@ -104,7 +104,7 @@ function Sidebar({ openSidebarToggle, openSideBar }) {
           }`}
         >
           <Link to="/view-therapists">
-            <BsTextParagraph className="icon" /> Therapists
+            <BiUserCircle className="icon" /> Therapists
           </Link>
         </li>
         <li
@@ -113,7 +113,7 @@ function Sidebar({ openSidebarToggle, openSideBar }) {
           }`}
         >
           <Link to="/view-therapist-major">
-            <BiUserCircle className="icon" /> Majors
+            <BsTextParagraph className="icon" /> Majors
           </Link>
         </li>
         <li
