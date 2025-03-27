@@ -8,7 +8,12 @@ import {
   BsTextParagraph,
   BsXCircle,
 } from "react-icons/bs";
-import { BiCalendarEvent, BiUserCircle, BiMoneyWithdraw } from "react-icons/bi";
+import {
+  BiCalendarEvent,
+  BiUserCircle,
+  BiMoneyWithdraw,
+  BiSolidFileDoc,
+} from "react-icons/bi";
 import { Link, useLocation } from "react-router-dom";
 import View_Therapist from "./../../../pages/pagesAdmin/View_Therapist/View_Therapist";
 
@@ -123,6 +128,15 @@ function Sidebar({ openSidebarToggle, openSideBar }) {
         >
           <Link to="/consultation-bookings">
             <BiCalendarEvent className="icon" /> Bookings
+          </Link>
+        </li>
+        <li
+          className={`sidebar-list-item ${
+            location.pathname === "/articles" ? "active" : ""
+          }`}
+        >
+          <Link to="/articles">
+            <BiSolidFileDoc className="icon" /> Articles
           </Link>
         </li>
       </ul>

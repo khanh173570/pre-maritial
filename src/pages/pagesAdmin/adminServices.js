@@ -312,3 +312,115 @@ export const updateWithdrawRequest = async (withdrawRequestId, data) => {
     throw error;
   }
 };
+
+//===========================Articles===========================
+//Lấy danh sách articles
+export const getArticles = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/articles?page=1&size=999`, {
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching withdraw requests:", error);
+    throw error;
+  }
+};
+//Xóa article
+export const deleteArticle = async (articleId) => {
+  try {
+    const response = await axios.delete(`${API_URL}/articles/${articleId}`, {
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`,
+      },
+    });
+    console.log(response.data); // Kiểm tra response
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting article:", error);
+    throw error;
+  }
+};
+//Tạo mới article
+export const createArticle = async (data) => {
+  try {
+    const response = await axios.post(`${API_URL}/articles`, data, {
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error adding article:", error);
+    throw error;
+  }
+};
+
+//===========================ArticleDetails===========================
+//Lấy danh sách articlesdetails
+export const getArticleParts = async () => {
+  try {
+    const response = await axios.get(
+      `${API_URL}/articleParts?page=1&size=999`,
+      {
+        headers: {
+          Authorization: `Bearer ${getAccessToken()}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching withdraw requests:", error);
+    throw error;
+  }
+};
+//update articlepart
+export const updateArticlePart = async (articlePartsId, data) => {
+  try {
+    const response = await axios.put(
+      `${API_URL}/articleParts/${articlePartsId}`,
+      data,
+      {
+        headers: {
+          Authorization: `Bearer ${getAccessToken()}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error updating withdraw request:", error);
+    throw error;
+  }
+};
+//tao moi articlepart
+export const createArticlePart = async (data) => {
+  try {
+    const response = await axios.post(`${API_URL}/articleParts`, data, {
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error adding articlepart:", error);
+    throw error;
+  }
+};
+
+//===========================Categories===========================
+//Lấy danh sách categories
+export const getCategories = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/categories?page=1&size=999`, {
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching categories:", error);
+    throw error;
+  }
+};

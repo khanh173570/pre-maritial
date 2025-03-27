@@ -46,6 +46,9 @@ import Transactions from "./pages/pagesAdmin/Transactions";
 import EditTherapist from "./pages/pagesAdmin/EditTherapist";
 import ConsultationBookings from "./pages/pagesAdmin/ConsultationBookings";
 import WithdrawRequests from "./pages/pagesAdmin/WithdrawRequests";
+import ArticlesList from "./pages/pagesAdmin/ArticlesList";
+import ArticleDetails from "./pages/pagesAdmin/ArticleDetails";
+import CreateArticle from "./pages/pagesAdmin/CreateArticle";
 const App = () => {
   return (
     <GlobalProvider>
@@ -115,6 +118,9 @@ const App = () => {
               element={<ConsultationBookings />}
             />
             <Route path="/withdraw-requests" element={<WithdrawRequests />} />
+            <Route path="/articles" element={<ArticlesList />} />
+            <Route path="/articles/create" element={<CreateArticle />} />
+            <Route path="/articles/:id/details" element={<ArticleDetails />} />
           </Route>
 
           {/* Route cho Therapist */}
