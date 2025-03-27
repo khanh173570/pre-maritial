@@ -108,13 +108,18 @@ const updateTherapist = async (userId, updatedData) => {
         headers,
         body: JSON.stringify(updatedData),
       }
-    );
+    ).catch((error) => {
+      console.error("Network error during fetch:", error);
+      throw new Error("Network error: Unable to reach the server");
+    });
 
     console.log("Response status:", response.status);
     console.log("Response ok:", response.ok);
 
     if (!response.ok) {
-      throw new Error("Lỗi khi cập nhật thông tin therapist");
+      const errorText = await response.text();
+      console.error("API error response:", errorText);
+      throw new Error(`Lỗi khi cập nhật thông tin therapist: ${errorText}`);
     }
 
     const updatedTherapist = await response.json();
@@ -128,8 +133,7 @@ const updateTherapist = async (userId, updatedData) => {
     return updatedTherapist;
   } catch (error) {
     console.error("Error updating therapist:", error);
-    navigate("/login");
-    throw error;
+    throw error; // Re-throw the error so handleSave can catch it
   }
 };
 export default GlobalProvider;

@@ -1,85 +1,91 @@
-import React from "react";
+import React, { useState } from "react";
+import { AppBar, Toolbar, Typography, IconButton, Menu, MenuItem, Badge } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import NotificationsIcon from "@mui/icons-material/Notifications"; // Add this import
 import useAuth from "../../utils/hook/useAuth";
-import { logout } from "../../contexts/AuthContext/reducer";
-import { Box, Typography, Avatar, IconButton, Badge, Menu, MenuItem } from "@mui/material";
-import NotificationsIcon from "@mui/icons-material/Notifications";
+
+// TherapistHeader.jsx
+// This component displays the header for the therapist dashboard.
+// It includes a link to the notifications page with a badge showing the number of unread notifications.
+// Currently, the unread count is mocked (hardcoded to 2 for testing).
+// TODO: For the development team
+// 1. Replace the hardcoded unreadCount with a real value.
+//    - Option 1: Fetch the unread count from the API (e.g., GET /notifications/unread-count).
+//    - Option 2: Use a context or state management to share the unreadCount from TherapistNotifications.jsx.
+// 2. If using a context, you can store the notifications in a NotificationContext and update the unreadCount dynamically.
 
 const TherapistHeader = () => {
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
-  const { user, dispatch } = useAuth();
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
 
-  const handleMenuOpen = (event) => {
+  const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMenuClose = () => {
+  const handleClose = () => {
     setAnchorEl(null);
   };
 
-  const handleProfileClick = () => {
+  const handleProfile = () => {
     navigate("/therapist-home/profile");
-    handleMenuClose();
+    handleClose();
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
-    if (dispatch) {
-      dispatch(logout());
-    }
-    toast.success("Logout successful!");
-    navigate("/login");
-    handleMenuClose();
+    logout();
+    handleClose();
   };
 
-  const handleNotificationsClick = () => {
+  const handleNotifications = () => {
     navigate("/therapist-home/notifications");
   };
 
+  // Mock unread count for testing
+  const unreadCount = 2; // This will be updated dynamically by your team
+
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: 2,
-        backgroundColor: "#1976d2",
-        color: "white",
-      }}
-    >
-      <Typography variant="h6">Therapist Dashboard</Typography>
-      <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-        <IconButton onClick={handleNotificationsClick} sx={{ color: "white" }}>
-          <Badge badgeContent={3} color="error">
+    <AppBar position="static">
+      <Toolbar>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          Therapist Dashboard
+        </Typography>
+        <IconButton color="inherit" onClick={handleNotifications}>
+          <Badge badgeContent={unreadCount} color="error">
             <NotificationsIcon />
           </Badge>
         </IconButton>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          <Avatar
-            onClick={handleMenuOpen}
-            sx={{ cursor: "pointer", bgcolor: "#fff", color: "#1976d2" }}
-          >
-            {user?.username?.charAt(0) || "U"}
-          </Avatar>
-          <Box>
-            <Typography variant="body1">{user?.username || "User"}</Typography>
-            <Typography variant="body2">{user?.email || "email@example.com"}</Typography>
-            <Typography variant="body2">Wallet: $0.00</Typography>
-          </Box>
-        </Box>
-        <Menu
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={handleMenuClose}
+        <IconButton
+          size="large"
+          aria-label="account of current user"
+          aria-controls="menu-appbar"
+          aria-haspopup="true"
+          onClick={handleMenu}
+          color="inherit"
         >
-          <MenuItem onClick={handleProfileClick}>Profile</MenuItem>
+          <AccountCircle />
+        </IconButton>
+        <Menu
+          id="menu-appbar"
+          anchorEl={anchorEl}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          keepMounted
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          <MenuItem onClick={handleProfile}>Profile</MenuItem>
           <MenuItem onClick={handleLogout}>Logout</MenuItem>
         </Menu>
-      </Box>
-    </Box>
+      </Toolbar>
+    </AppBar>
   );
 };
 

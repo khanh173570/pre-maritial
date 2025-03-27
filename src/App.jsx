@@ -36,6 +36,7 @@ import TherapistWallet from "./pages/pagesTherapist/TherapistWallet"; // Add thi
 import TherapistProfile from "./pages/pagesTherapist/TherapistProfile";
 import TherapistRefundRequest from "./pages/pagesTherapist/TherapistRefundRequest";
 import TherapistTransactionHistory from "./pages/pagesTherapist/TherapistTransactionHistory";
+import TherapistNotifications from "./pages/pagesTherapist/TherapistNotifications"; // Add this import
 
 // Import Therapist Context
 import GlobalProvider from "./contexts/TherapistContext";
@@ -121,6 +122,7 @@ const App = () => {
             <Route path="/therapist-home/wallet" element={<TherapistWallet />} />
             <Route path="/therapist-home/refund-request" element={<TherapistRefundRequest />} />
             <Route path="/therapist-home/transaction-history" element={<TherapistTransactionHistory />} />
+            <Route path="/therapist-home/notifications" element={<TherapistNotifications />} /> {/* Add this route */}
             <Route path="/therapist-home/schedule" element={<div>Schedule Page (Coming Soon)</div>} />
             <Route path="/therapist-home/quiz" element={<div>Quiz Page (Coming Soon)</div>} />
             <Route path="/therapist-home/notifications" element={<div>Notifications Page (Coming Soon)</div>} />
