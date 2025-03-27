@@ -6,6 +6,8 @@ const EditTherapist = () => {
   const { userId } = useParams(); // Get userId from the URL
   const navigate = useNavigate(); // For navigation after saving
   const [therapist, setTherapist] = useState(null);
+  const [loading, setLoading] = useState(true); // Add loading state
+  const [error, setError] = useState(null); // Add error state
 
   // Helper function to convert MM/DD/YYYY to YYYY-MM-DD
   const formatDateForInput = (dateString) => {
@@ -17,7 +19,13 @@ const EditTherapist = () => {
   useEffect(() => {
     const fetchTherapist = async () => {
       try {
+        setLoading(true); // Set loading to true
         const data = await getTherapistById(userId); // Fetch therapist details
+
+        if (!data) {
+          throw new Error("Therapist details not found."); // Handle missing data
+        }
+
         // Format the date fields for input type="date"
         data.certificationIssueDate = formatDateForInput(
           data.certificationIssueDate
@@ -28,6 +36,9 @@ const EditTherapist = () => {
         setTherapist(data);
       } catch (error) {
         console.error("Error fetching therapist details:", error);
+        setError("Therapist details not found or unavailable."); // Set error message
+      } finally {
+        setLoading(false); // Set loading to false
       }
     };
 
@@ -81,8 +92,38 @@ const EditTherapist = () => {
     }
   };
 
+  if (loading) {
+    return <div className="text-center mt-4">Loading...</div>; // Display loading message
+  }
+
+  if (error) {
+    return (
+      <div className="text-center mt-4 text-danger">
+        {error}
+        <br />
+        <button
+          className="btn btn-secondary mt-3"
+          onClick={() => navigate("/view-therapists")} // Navigate back to the therapist list
+        >
+          Go Back
+        </button>
+      </div>
+    );
+  }
+
   if (!therapist) {
-    return <div>Loading...</div>;
+    return (
+      <div className="text-center mt-4">
+        Therapist details not found.
+        <br />
+        <button
+          className="btn btn-secondary mt-3"
+          onClick={() => navigate("/view-therapists")} // Navigate back to the therapist list
+        >
+          Go Back
+        </button>
+      </div>
+    );
   }
 
   return (
