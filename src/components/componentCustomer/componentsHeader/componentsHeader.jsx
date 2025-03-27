@@ -49,45 +49,22 @@ function ComponentsHeader() {
 
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            {/* <NavLink to="/" className="nav-link">
-              Home
-            </NavLink> */}
+            {/* mới thêm */}
+            <Nav.Link as={NavLink} to="/customer-home/view-articles">
+              Articles
+            </Nav.Link>
 
-            <NavDropdown title="Getting Married" id="nav-dropdown">
-              <NavDropdown.Item as={NavLink} to="/customer-home/pre-marige">
-                Pre Marriage Counselling
-              </NavDropdown.Item>
-              <NavDropdown.Item as={NavLink} to="/customer-home/readiness">
-                Marriage Readiness
-              </NavDropdown.Item>
-              <NavDropdown.Item as={NavLink} to="/customer-home/vows">
-                Marriage Vows
-              </NavDropdown.Item>
-              <NavDropdown.Item
-                as={NavLink}
-                to="/customer-home/marriage-preparation"
-              >
-                Marriage Preparation
-              </NavDropdown.Item>
-            </NavDropdown>
-            <NavDropdown title="View List Therapister" id="nav-dropdown">
-              <NavDropdown.Item
-                as={NavLink}
-                to="/customer-home/view-therapists"
-              >
-                View List Therapister
-              </NavDropdown.Item>
-            </NavDropdown>
-            <NavDropdown title="Getting Married" id="nav-dropdown">
-              <NavDropdown.Item as={NavLink} to="/pre-marige">
-                Pre Marriage Counselling
-              </NavDropdown.Item>
-            </NavDropdown>
-            <NavDropdown title="Getting Married" id="nav-dropdown">
-              <NavDropdown.Item as={NavLink} to="/pre-marige">
-                Pre Marriage Counselling
-              </NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Link as={NavLink} to="/customer-home/view-therapists">
+              Therapists
+            </Nav.Link>
+
+            <Nav.Link as={NavLink} to="/customer-home/view-bookings">
+              Bookings
+            </Nav.Link>
+
+            <Nav.Link as={NavLink} to="/customer-home/view-therapists">
+              Quizzes
+            </Nav.Link>
 
             {/* Dropdown User */}
             <NavDropdown

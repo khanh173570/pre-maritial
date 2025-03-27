@@ -12,6 +12,8 @@ import AuthGuard from "./auth/AuthGuard";
 import { CustomerGuard } from "./auth/CustomerGuard";
 import { Outlet } from "react-router-dom";
 
+//import View_Article_Customer from "./pages/pagesCustomer/View_Article/ArticlesPage";
+
 import HomePage from "./pages/pagesCustomer/homePage/HomePage";
 import CustomerApp from "./layouts/layoutCustomer/CustomerApp";
 import AdminApp from "./layouts/layoutAdmin/AdminApp";
@@ -44,6 +46,8 @@ import AddUserForm from "./pages/pagesAdmin/AddUserForm";
 import AddMajorForm from "./pages/pagesAdmin/AddMajorForm";
 import Transactions from "./pages/pagesAdmin/Transactions";
 import EditTherapist from "./pages/pagesAdmin/EditTherapist";
+import ArticlesPage from "./pages/pagesCustomer/View_Article/View_Article";
+
 const App = () => {
   return (
     <GlobalProvider>
@@ -84,6 +88,7 @@ const App = () => {
                 path="view-therapists"
                 element={<View_Therapist_Customer />}
               />
+              <Route path="view-articles" element={<ArticlesPage />} />
               <Route
                 path="/customer-home/view-therapists/schedule/:therapistId"
                 element={<ScheduleTherapist />}
