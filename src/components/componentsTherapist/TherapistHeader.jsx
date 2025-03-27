@@ -1,96 +1,143 @@
 import React, { useState } from "react";
-import { AppBar, Toolbar, Typography, IconButton, Menu, MenuItem, Badge } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import AccountCircle from "@mui/icons-material/AccountCircle";
+import { Link, useLocation } from "react-router-dom";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  IconButton,
+  Badge,
+  Menu,
+  MenuItem,
+  Box,
+} from "@mui/material";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet"; // Add this import
-import useAuth from "../../utils/hook/useAuth";
 
-// TherapistHeader.jsx
-// This component displays the header for the therapist dashboard.
-// It includes links to the notifications and wallet pages, with a badge showing the number of unread notifications.
-// Currently, the unread count is mocked (hardcoded to 2 for testing).
-// TODO: For the development team
-// 1. Replace the hardcoded unreadCount with a real value.
-//    - Option 1: Fetch the unread count from the API (e.g., GET /notifications/unread-count).
-//    - Option 2: Use a context or state management to share the unreadCount from TherapistNotifications.jsx.
-// 2. If using a context, you can store the notifications in a NotificationContext and update the unreadCount dynamically.
-
+// This component defines the header for the Therapist Role.
+// Dynamically sets the title based on the current route.
+// Adds navigation to the notification icon and a dropdown for the profile icon.
 const TherapistHeader = () => {
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
-  const [anchorEl, setAnchorEl] = useState(null);
+  // Mock data for notifications (replace with API later)
+  const unreadNotifications = 2;
 
-  const handleMenu = (event) => {
+  // State for profile dropdown
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+
+  // Handle profile icon click to open/close dropdown
+  const handleProfileClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleProfileClose = () => {
     setAnchorEl(null);
   };
 
-  const handleProfile = () => {
-    navigate("/therapist-home/profile");
-    handleClose();
-  };
-
+  // Handle logout (mock function, replace with actual logout logic)
   const handleLogout = () => {
-    logout();
-    handleClose();
+    console.log("Logging out...");
+    // Add actual logout logic here (e.g., clear auth token, redirect to login)
+    handleProfileClose();
   };
 
-  const handleNotifications = () => {
-    navigate("/therapist-home/notifications");
+  // Get current route to set dynamic header text
+  const location = useLocation();
+  const getHeaderTitle = () => {
+    switch (location.pathname) {
+      case "/therapist-home":
+        return "Therapist Dashboard";
+      case "/therapist-home/profile":
+        return "My Profile";
+      case "/therapist-home/notifications":
+        return "Notifications";
+      case "/therapist-home/wallet":
+        return "Wallet";
+      case "/therapist-home/withdrawn-requests":
+        return "Withdrawn Requests";
+      case "/therapist-home/transaction-history":
+        return "Transaction History";
+      case "/therapist-home/schedule":
+        return "Schedule/Booking";
+      case "/therapist-home/quiz":
+        return "Quiz";
+      case "/therapist-home/articles":
+        return "Articles";
+      default:
+        return "Therapist Dashboard";
+    }
   };
-
-  const handleWallet = () => {
-    navigate("/therapist-home/wallet");
-  };
-
-  // Mock unread count for testing
-  const unreadCount = 2; // This will be updated dynamically by your team
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ backgroundColor: "#1976d2" }}>
       <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Therapist Dashboard
+        {/* Dynamic Title */}
+        <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          {getHeaderTitle()}
         </Typography>
-        <IconButton color="inherit" onClick={handleWallet}>
-          <AccountBalanceWalletIcon />
-        </IconButton>
-        <IconButton color="inherit" onClick={handleNotifications}>
-          <Badge badgeContent={unreadCount} color="error">
+
+        {/* Notification Icon with Redirect */}
+        <IconButton
+          color="inherit"
+          component={Link}
+          to="/therapist-home/notifications"
+        >
+          <Badge badgeContent={unreadNotifications ?? 0} color="error">
             <NotificationsIcon />
           </Badge>
         </IconButton>
+
+        {/* Profile Icon with Dropdown */}
         <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="menu-appbar"
-          aria-haspopup="true"
-          onClick={handleMenu}
           color="inherit"
+          onClick={handleProfileClick}
+          aria-controls={open ? "profile-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
         >
-          <AccountCircle />
+          <AccountCircleIcon />
         </IconButton>
+
+        {/* Profile Dropdown Menu */}
         <Menu
-          id="menu-appbar"
+          id="profile-menu"
           anchorEl={anchorEl}
+          open={open}
+          onClose={handleProfileClose}
           anchorOrigin={{
-            vertical: "top",
+            vertical: "bottom",
             horizontal: "right",
           }}
-          keepMounted
           transformOrigin={{
             vertical: "top",
             horizontal: "right",
           }}
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
         >
-          <MenuItem onClick={handleProfile}>Profile</MenuItem>
-          <MenuItem onClick={handleLogout}>Logout</MenuItem>
+          {/* UserCard */}
+          <Box sx={{ padding: 2, minWidth: 200 }}>
+            <Typography variant="subtitle1" gutterBottom>
+              Lotus
+            </Typography>
+            <Typography variant="body2" color="textSecondary">
+              Therapist
+            </Typography>
+            <Typography variant="body2" color="textSecondary">
+              lotus@example.com
+            </Typography>
+          </Box>
+          <MenuItem
+            onClick={handleLogout}
+            sx={{
+              backgroundColor: "#f44336", // Red background
+              color: "#fff", // White text
+              "&:hover": {
+                backgroundColor: "#d32f2f", // Darker red on hover
+              },
+              margin: 1,
+              borderRadius: "4px",
+            }}
+          >
+            Logout
+          </MenuItem>
         </Menu>
       </Toolbar>
     </AppBar>
