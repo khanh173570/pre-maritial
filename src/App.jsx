@@ -44,6 +44,8 @@ import AddUserForm from "./pages/pagesAdmin/AddUserForm";
 import AddMajorForm from "./pages/pagesAdmin/AddMajorForm";
 import Transactions from "./pages/pagesAdmin/Transactions";
 import EditTherapist from "./pages/pagesAdmin/EditTherapist";
+import ConsultationBookings from "./pages/pagesAdmin/ConsultationBookings";
+import WithdrawRequests from "./pages/pagesAdmin/WithdrawRequests";
 const App = () => {
   return (
     <GlobalProvider>
@@ -108,6 +110,11 @@ const App = () => {
               path="/edit-therapist-major/:majorId"
               element={<MajorInfoForm />}
             />
+            <Route
+              path="/consultation-bookings"
+              element={<ConsultationBookings />}
+            />
+            <Route path="/withdraw-requests" element={<WithdrawRequests />} />
           </Route>
 
           {/* Route cho Therapist */}

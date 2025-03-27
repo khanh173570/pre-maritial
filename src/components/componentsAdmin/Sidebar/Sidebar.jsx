@@ -8,7 +8,7 @@ import {
   BsTextParagraph,
   BsXCircle,
 } from "react-icons/bs";
-import { BiCalendarEvent, BiUserCircle } from "react-icons/bi";
+import { BiCalendarEvent, BiUserCircle, BiMoneyWithdraw } from "react-icons/bi";
 import { Link, useLocation } from "react-router-dom";
 import View_Therapist from "./../../../pages/pagesAdmin/View_Therapist/View_Therapist";
 
@@ -66,18 +66,13 @@ function Sidebar({ openSidebarToggle, openSideBar }) {
             <BsGrid1X2Fill className="icon" /> Dashboard
           </Link>
         </li>
-        {/* <li className="sidebar-list-item">
-          <Link to="/articles">
-            <BsTextParagraph className="icon" /> Articles
-          </Link>
-        </li> */}
         <li
           className={`sidebar-list-item ${
-            location.pathname === "/accounts" ? "active" : ""
+            location.pathname === "/withdraw-requests" ? "active" : ""
           }`}
         >
-          <Link to="/accounts">
-            <BsPersonCircle className="icon" /> Accounts
+          <Link to="/withdraw-requests">
+            <BiMoneyWithdraw className="icon" /> Withdraw Requests
           </Link>
         </li>
         <li
@@ -87,6 +82,15 @@ function Sidebar({ openSidebarToggle, openSideBar }) {
         >
           <Link to="/transactions">
             <BsCurrencyDollar className="icon" /> Transaction
+          </Link>
+        </li>
+        <li
+          className={`sidebar-list-item ${
+            location.pathname === "/accounts" ? "active" : ""
+          }`}
+        >
+          <Link to="/accounts">
+            <BsPersonCircle className="icon" /> Accounts
           </Link>
         </li>
         {/* <li className="sidebar-list-item">
@@ -114,11 +118,10 @@ function Sidebar({ openSidebarToggle, openSideBar }) {
         </li>
         <li
           className={`sidebar-list-item ${
-            location.pathname === "" ? "active" : ""
+            location.pathname === "/consultation-bookings" ? "active" : ""
           }`}
         >
-          {/* change to proper link later */}
-          <Link to="/">
+          <Link to="/consultation-bookings">
             <BiCalendarEvent className="icon" /> Bookings
           </Link>
         </li>
