@@ -1,0 +1,47 @@
+/* General container styling */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+/* Page title styling */
+.article-title-parts-page {
+  text-align: center;
+  font-size: 2rem;
+  color: #007bff;
+  margin-bottom: 20px;
+}
+
+/* Continuous article parts styling */
+.article-parts-continuous {
+  line-height: 1.8;
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Individual article part section */
+.article-part-section {
+  margin-bottom: 20px;
+}
+
+.article-part-section h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.article-part-section p {
+  margin-bottom: 15px;
+}
+
+/* Image styling */
+.article-part-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  object-fit: cover;
+}

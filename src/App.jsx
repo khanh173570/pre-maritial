@@ -53,6 +53,7 @@ import WithdrawRequests from "./pages/pagesAdmin/WithdrawRequests";
 import ArticlesList from "./pages/pagesAdmin/ArticlesList";
 import ArticleDetails from "./pages/pagesAdmin/ArticleDetails";
 import CreateArticle from "./pages/pagesAdmin/CreateArticle";
+import ArticlePartsPage from "./pages/pagesCustomer/articlePartsPage/ArticlePartsPage";
 const App = () => {
   return (
     <GlobalProvider>
@@ -94,6 +95,10 @@ const App = () => {
                 element={<View_Therapist_Customer />}
               />
               <Route path="view-articles" element={<ArticlesPage />} />
+              <Route
+                path="articles/:articleId/parts"
+                element={<ArticlePartsPage />}
+              />
               <Route
                 path="/customer-home/view-therapists/schedule/:therapistId"
                 element={<ScheduleTherapist />}

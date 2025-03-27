@@ -252,7 +252,7 @@ export const updateTherapist = async (therapistId, therapistData) => {
 export const getArticles = async (page = 1) => {
   try {
     const response = await axios.get(
-      `${API_URL}/articles?page=${page}&size=10`,
+      `${API_URL}/articles?page=${page}&size=999`,
       {
         headers: {
           Authorization: `Bearer ${getAccessToken()}`,
@@ -267,10 +267,26 @@ export const getArticles = async (page = 1) => {
 };
 
 //===========================ArticleParts===========================
-export const getArticleParts = async (page = 1) => {
+// export const getArticleParts = async (page = 1) => {
+//   try {
+//     const response = await axios.get(
+//       `${API_URL}/articles?page=${page}&size=999`,
+//       {
+//         headers: {
+//           Authorization: `Bearer ${getAccessToken()}`,
+//         },
+//       }
+//     );
+//     return response.data;
+//   } catch (error) {
+//     console.error("Error fetching articles:", error);
+//     throw error;
+//   }
+// };
+export const getArticleParts = async () => {
   try {
     const response = await axios.get(
-      `${API_URL}/articles?page=${page}&size=10`,
+      `${API_URL}/articleParts?page=1&size=999`,
       {
         headers: {
           Authorization: `Bearer ${getAccessToken()}`,
@@ -279,7 +295,7 @@ export const getArticleParts = async (page = 1) => {
     );
     return response.data;
   } catch (error) {
-    console.error("Error fetching articles:", error);
+    console.error("Error fetching withdraw requests:", error);
     throw error;
   }
 };
