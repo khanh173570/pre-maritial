@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Box,
   Typography,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
+  Grid,
+  Card,
+  CardMedia,
+  CardContent,
+  CardActions,
   Button,
   TextField,
   Dialog,
@@ -20,24 +18,26 @@ import {
 } from "@mui/material";
 import { Edit, Delete } from "@mui/icons-material";
 
-// This component allows therapists to perform CRUD operations on articles.
+// This component allows therapists to view articles in a card-based preview layout and perform CRUD operations.
 // Mock data is used; replace with API calls when ready.
 const TherapistArticles = () => {
   const navigate = useNavigate();
 
-  // Mock data for articles
+  // Mock data for articles (added image field)
   const initialArticles = [
     {
       id: 1,
       title: "5 Tips for Better Communication",
-      content: "Effective communication is key to a healthy relationship. Here are five tips to improve how you and your partner talk to each other...",
+      content: "Effective communication is key to a healthy relationship. Here are five tips to improve how you and your partner talk to each other. Start by actively listening, ensuring you understand your partner's perspective before responding. Next, use 'I' statements to express your feelings without blaming. Third, set aside time for meaningful conversations without distractions. Fourth, be mindful of your tone and body language, as they can impact how your message is received. Finally, practice patience and empathy, recognizing that communication is a skill that takes time to develop.",
       lastUpdated: "2025-03-27",
+      image: "https://via.placeholder.com/300x200?text=Communication", // Placeholder image
     },
     {
       id: 2,
       title: "Managing Conflict in Relationships",
-      content: "Conflict is inevitable, but it doesn’t have to harm your relationship. Learn strategies to resolve disagreements constructively...",
+      content: "Conflict is inevitable, but it doesn’t have to harm your relationship. Learn strategies to resolve disagreements constructively. Begin by taking a step back to cool off if emotions run high. Then, approach the conversation with a problem-solving mindset, focusing on the issue rather than personal attacks. Listen to your partner’s perspective without interrupting, and validate their feelings even if you disagree. Work together to find a compromise that respects both of your needs. Finally, reflect on the conflict to identify patterns and prevent future issues.",
       lastUpdated: "2025-03-26",
+      image: "https://via.placeholder.com/300x200?text=Conflict", // Placeholder image
     },
   ];
 
@@ -45,7 +45,7 @@ const TherapistArticles = () => {
   const [openAddDialog, setOpenAddDialog] = useState(false);
   const [openEditDialog, setOpenEditDialog] = useState(false);
   const [currentArticle, setCurrentArticle] = useState(null);
-  const [newArticle, setNewArticle] = useState({ title: "", content: "" });
+  const [newArticle, setNewArticle] = useState({ title: "", content: "", image: "" });
 
   useEffect(() => {
     // Simulate fetching articles
@@ -68,10 +68,11 @@ const TherapistArticles = () => {
       id: newId,
       title: newArticle.title,
       content: newArticle.content,
-      lastUpdated: new Date().toISOString().split("T")[0], // e.g., "2025-03-27"
+      image: newArticle.image || "https://via.placeholder.com/300x200?text=Article", // Default image if none provided
+      lastUpdated: new Date().toISOString().split("T")[0],
     };
     setArticles([...articles, article]);
-    setNewArticle({ title: "", content: "" });
+    setNewArticle({ title: "", content: "", image: "" });
     setOpenAddDialog(false);
     // TODO: Replace with API call, e.g., createArticle(article);
   };
@@ -107,9 +108,9 @@ const TherapistArticles = () => {
     }
   };
 
-  // Get content snippet (first 50 characters)
-  const getContentSnippet = (content) => {
-    return content.length > 50 ? content.substring(0, 50) + "..." : content;
+  // Get content excerpt (first 100 characters)
+  const getContentExcerpt = (content) => {
+    return content.length > 100 ? content.substring(0, 100) + "..." : content;
   };
 
   return (
@@ -128,44 +129,44 @@ const TherapistArticles = () => {
         Add New Article
       </Button>
 
-      {/* Articles Table */}
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Title</TableCell>
-              <TableCell>Content (Snippet)</TableCell>
-              <TableCell>Last Updated</TableCell>
-              <TableCell>Actions</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {articles.length > 0 ? (
-              articles.map((article) => (
-                <TableRow key={article.id}>
-                  <TableCell>{article.title}</TableCell>
-                  <TableCell>{getContentSnippet(article.content)}</TableCell>
-                  <TableCell>{article.lastUpdated}</TableCell>
-                  <TableCell>
-                    <IconButton onClick={() => handleEditArticle(article)}>
-                      <Edit />
-                    </IconButton>
-                    <IconButton onClick={() => handleDeleteArticle(article.id)}>
-                      <Delete />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell colSpan={4} align="center">
-                  No articles found
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      {/* Articles Grid (Card Layout) */}
+      <Grid container spacing={3}>
+        {articles.length > 0 ? (
+          articles.map((article) => (
+            <Grid item xs={12} sm={6} md={4} key={article.id}>
+              <Card>
+                <CardMedia
+                  component="img"
+                  height="140"
+                  image={article.image}
+                  alt={article.title}
+                />
+                <CardContent>
+                  <Typography variant="h6" component={Link} to={`/therapist-home/articles/${article.id}`} sx={{ textDecoration: "none", color: "inherit" }}>
+                    {article.title}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {getContentExcerpt(article.content)}
+                  </Typography>
+                  <Typography variant="caption" color="text.secondary">
+                    Last Updated: {article.lastUpdated}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <IconButton onClick={() => handleEditArticle(article)}>
+                    <Edit />
+                  </IconButton>
+                  <IconButton onClick={() => handleDeleteArticle(article.id)}>
+                    <Delete />
+                  </IconButton>
+                </CardActions>
+              </Card>
+            </Grid>
+          ))
+        ) : (
+          <Typography>No articles found</Typography>
+        )}
+      </Grid>
 
       {/* Add Article Dialog */}
       <Dialog open={openAddDialog} onClose={() => setOpenAddDialog(false)}>
@@ -185,6 +186,13 @@ const TherapistArticles = () => {
             rows={4}
             value={newArticle.content}
             onChange={(e) => setNewArticle({ ...newArticle, content: e.target.value })}
+            sx={{ marginBottom: "20px" }}
+          />
+          <TextField
+            label="Image URL (optional)"
+            fullWidth
+            value={newArticle.image}
+            onChange={(e) => setNewArticle({ ...newArticle, image: e.target.value })}
           />
         </DialogContent>
         <DialogActions>
@@ -218,6 +226,15 @@ const TherapistArticles = () => {
                 value={currentArticle.content}
                 onChange={(e) =>
                   setCurrentArticle({ ...currentArticle, content: e.target.value })
+                }
+                sx={{ marginBottom: "20px" }}
+              />
+              <TextField
+                label="Image URL"
+                fullWidth
+                value={currentArticle.image}
+                onChange={(e) =>
+                  setCurrentArticle({ ...currentArticle, image: e.target.value })
                 }
               />
             </>

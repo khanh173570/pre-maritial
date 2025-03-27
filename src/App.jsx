@@ -40,6 +40,7 @@ import TherapistNotifications from "./pages/pagesTherapist/TherapistNotification
 import TherapistBookings from "./pages/pagesTherapist/TherapistBookings";
 import TherapistQuiz from "./pages/pagesTherapist/TherapistQuiz";
 import TherapistArticles from "./pages/pagesTherapist/TherapistArticles";
+import TherapistArticleDetail from "./pages/pagesTherapist/TherapistArticleDetail";
 
 // Import Therapist Context
 import GlobalProvider from "./contexts/TherapistContext";
@@ -129,6 +130,7 @@ const App = () => {
             <Route path="/therapist-home/schedule" element={<TherapistBookings />} />
             <Route path="/therapist-home/quiz" element={<TherapistQuiz />} />
             <Route path="/therapist-home/articles" element={<TherapistArticles />} />
+            <Route path="/therapist-home/articles/:id" element={<TherapistArticleDetail />} />
           </Route>
 
           {/* Mặc định chuyển hướng về customer nếu route không tồn tại */}
