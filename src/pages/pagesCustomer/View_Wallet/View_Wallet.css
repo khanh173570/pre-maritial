@@ -1,0 +1,30 @@
+/* General container styling */
+.wallet-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Title styling */
+.wallet-title {
+  text-align: center;
+  font-size: 2rem;
+  color: #4caf50;
+  margin-bottom: 20px;
+}
+
+/* Wallet details styling */
+.wallet-details {
+  font-size: 1.2rem;
+  line-height: 1.8;
+}
+
+.wallet-details p {
+  margin-bottom: 10px;
+}

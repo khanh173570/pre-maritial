@@ -314,3 +314,35 @@ export const getWalletById = async (walletId) => {
     throw error;
   }
 };
+
+//lấy wallet theo userId
+export const getWalletByUserId = async (userId) => {
+  try {
+    const response = await axios.get(`${API_URL}/wallets/User/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    if (error.response && error.response.status === 404) {
+      return null; // Return null if wallet is not found
+    }
+    console.error("Error fetching wallet:", error);
+    throw error; // Re-throw other errors
+  }
+};
+//tạo wallet mới
+export const createWallet = async (walletData) => {
+  try {
+    const response = await axios.post(`${API_URL}/wallets`, walletData, {
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error creating wallet:", error);
+    throw error;
+  }
+};

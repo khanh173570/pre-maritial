@@ -85,6 +85,10 @@ function ComponentsHeader() {
                     My Profile
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
+                  <NavDropdown.Item as={NavLink} to="/customer-home/wallet">
+                    My Wallet
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
                   <NavDropdown.Item onClick={handleLogout}>
                     Log out
                   </NavDropdown.Item>
