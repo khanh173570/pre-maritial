@@ -20,7 +20,7 @@ const TherapistProfile = () => {
   useEffect(() => {
     fetchTherapists();
   }, []);
-
+  
   useEffect(() => {
     if (therapists.length > 0 && user) {
       console.log("User:", user);
@@ -36,9 +36,14 @@ const TherapistProfile = () => {
           name: currentTherapist.bio || "Not set",
           credentials: currentTherapist.therapistCertificationName || "Not set",
           specialty: major ? major.name : "Not set",
-          availability: currentTherapist.availability || "Not set",
         });
+      } else {
+        console.log("Current therapist not found!");
       }
+    } else {
+      console.log("Therapists array is empty or user is not set!");
+      console.log("Therapists length:", therapists.length);
+      console.log("User:", user);
     }
   }, [therapists, user, majors]);
 
@@ -51,21 +56,27 @@ const TherapistProfile = () => {
     try {
       if (!therapistId) {
         toast.error("Không tìm thấy therapist ID!");
+        console.log("Therapist ID is missing!");
         return;
       }
-
+  
       const major = majors.find((m) => m.name === profile.specialty);
       const updatedData = {
         bio: profile.name,
         therapistCertificationName: profile.credentials,
         therapistMajorId: major ? major.id : null,
       };
-
+  
+      console.log("Saving therapist with ID:", therapistId);
+      console.log("Updated data:", updatedData);
+  
       await updateTherapist(therapistId, updatedData);
-      setIsEditing(false);
-      toast.success("Profile updated successfully!");
+      setIsEditing(false); // Exit edit mode after successful save
+      toast.success("Your changes have been saved!"); // Show success message
     } catch (error) {
-      toast.error("Lỗi khi cập nhật profile!");
+      console.error("Error updating profile:", error);
+      toast.error("Failed to save changes. Please try again."); // Show error message
+      // Do not set isEditing to false, so the user can try again
     }
   };
 

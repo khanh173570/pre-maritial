@@ -1,4 +1,5 @@
 import React, { createContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const TherapistContext = createContext();
 
@@ -13,32 +14,33 @@ export const GlobalProvider = ({ children }) => {
   const fetchTherapists = async () => {
     try {
       const token = getToken();
-      if (!token) throw new Error("Không tìm thấy token!");
-  
-      console.log("Token:", token); // Debug: Check if the token is present
+      console.log("Token in fetchTherapists:", token); // Add this log
+      if (!token) {
+        console.log("Token is missing, redirecting to login..."); // Add this log
+        navigate("/login");
+        return;
+      }
   
       const headers = {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       };
   
-      const resMajors = await fetch(
-        "http://54.179.45.72:8080/therapistMajors?page=1&size=99",
-        { method: "GET", headers }
-      );
-      const dataMajors = await resMajors.json();
-      console.log("Majors data:", dataMajors); // Debug: Check the majors data
-      setMajors(dataMajors.content);
-  
-      const resTherapists = await fetch(
+      const response = await fetch(
         "http://54.179.45.72:8080/therapists?page=1&size=99",
-        { method: "GET", headers }
+        { headers }
       );
-      const dataTherapists = await resTherapists.json();
-      console.log("Therapists data:", dataTherapists); // Debug: Check the therapists data
-      setTherapists(dataTherapists.content);
+  
+      if (!response.ok) {
+        throw new Error("Lỗi khi lấy dữ liệu therapists");
+      }
+  
+      const data = await response.json();
+      console.log("Therapists data:", data);
+      setTherapists(data);
     } catch (error) {
       console.error("Lỗi khi lấy dữ liệu therapists:", error);
+      navigate("/login");
     }
   };
   // Lấy lịch trình của therapist theo therapistId
@@ -81,5 +83,53 @@ export const GlobalProvider = ({ children }) => {
     </TherapistContext.Provider>
   );
 };
+const updateTherapist = async (userId, updatedData) => {
+  try {
+    const token = getToken();
+    if (!token) {
+      console.log("Token is missing, redirecting to login...");
+      navigate("/login");
+      return;
+    }
 
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    };
+
+    console.log("Making PUT request to:", `http://54.179.45.72:8080/therapists/${userId}`);
+    console.log("Request headers:", headers);
+    console.log("Request body:", updatedData);
+
+    const response = await fetch(
+      `http://54.179.45.72:8080/therapists/${userId}`,
+      {
+        method: "PUT",
+        headers,
+        body: JSON.stringify(updatedData),
+      }
+    );
+
+    console.log("Response status:", response.status);
+    console.log("Response ok:", response.ok);
+
+    if (!response.ok) {
+      throw new Error("Lỗi khi cập nhật thông tin therapist");
+    }
+
+    const updatedTherapist = await response.json();
+    console.log("Updated therapist data:", updatedTherapist);
+
+    setTherapists((prev) =>
+      prev.map((therapist) =>
+        therapist.userId === userId ? updatedTherapist : therapist
+      )
+    );
+    return updatedTherapist;
+  } catch (error) {
+    console.error("Error updating therapist:", error);
+    navigate("/login");
+    throw error;
+  }
+};
 export default GlobalProvider;

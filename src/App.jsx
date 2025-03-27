@@ -32,7 +32,10 @@ import UserInfoForm from "./pages/pagesAdmin/UserInfoForm";
 
 import { CUSTOMER, THERAPIST, ADMIN } from "./utils/constants/role";
 import PagesTherapist from "./pages/pagesTherapist/PagesTherapist";
+import TherapistWallet from "./pages/pagesTherapist/TherapistWallet"; // Add this import
 import TherapistProfile from "./pages/pagesTherapist/TherapistProfile";
+import TherapistRefundRequest from "./pages/pagesTherapist/TherapistRefundRequest";
+import TherapistTransactionHistory from "./pages/pagesTherapist/TherapistTransactionHistory";
 
 // Import Therapist Context
 import GlobalProvider from "./contexts/TherapistContext";
@@ -115,7 +118,9 @@ const App = () => {
           <Route element={<TherapistApp />}>
             <Route path="/therapist-home" element={<PagesTherapist />} />
             <Route path="/therapist-home/profile" element={<TherapistProfile />} />
-            <Route path="/therapist-home/wallet" element={<div>Wallet Page (Coming Soon)</div>} />
+            <Route path="/therapist-home/wallet" element={<TherapistWallet />} />
+            <Route path="/therapist-home/refund-request" element={<TherapistRefundRequest />} />
+            <Route path="/therapist-home/transaction-history" element={<TherapistTransactionHistory />} />
             <Route path="/therapist-home/schedule" element={<div>Schedule Page (Coming Soon)</div>} />
             <Route path="/therapist-home/quiz" element={<div>Quiz Page (Coming Soon)</div>} />
             <Route path="/therapist-home/notifications" element={<div>Notifications Page (Coming Soon)</div>} />
