@@ -94,28 +94,38 @@ const View_Therapist = () => {
   const { therapists, majors, fetchTherapists } = useContext(TherapistContext);
   const [selectedMajor, setSelectedMajor] = useState("");
   const [users, setUsers] = useState([]); // State to store user details
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   // Fetch therapists and users on component mount
   useEffect(() => {
     const fetchData = async () => {
       try {
-        fetchTherapists(); // Fetch therapists
+        await fetchTherapists();
         const userData = await getUsers(); // Fetch users
         setUsers(userData); // Store users in state
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
+        setLoading(false);
       }
     };
 
     fetchData();
   }, []);
 
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
   const handleTherapistClick = (therapistId) => {
     navigate(`/customer-home/view-therapists/schedule/${therapistId}`);
   };
 
-  const filteredTherapists = therapists.filter(
+  // Access the `content` property of therapists
+  const therapistList = therapists?.content || [];
+
+  const filteredTherapists = therapistList.filter(
     (t) => !selectedMajor || t.therapistMajorId === Number(selectedMajor)
   );
 
