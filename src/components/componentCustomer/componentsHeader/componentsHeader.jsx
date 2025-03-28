@@ -89,6 +89,13 @@ function ComponentsHeader() {
                     My Wallet
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
+                  <NavDropdown.Item
+                    as={NavLink}
+                    to="/customer-home/transactionHistory"
+                  >
+                    Transaction History
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
                   <NavDropdown.Item onClick={handleLogout}>
                     Log out
                   </NavDropdown.Item>
