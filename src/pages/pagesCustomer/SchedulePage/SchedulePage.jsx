@@ -16,22 +16,30 @@ const ScheduleTherapist = () => {
   }, [therapistId]);
 
   const handleBookNow = async (schedule) => {
-    // Exclude the `id` field from the payload
-    const { id, ...payload } = schedule;
-    payload.isBooked = true; // Update isBooked to true
-
-    console.log("Payload being sent to updateSchedule:", payload);
-
     try {
-      await updateSchedule(id, payload); // Call the API to update the schedule
-      alert("Booking successful!"); // Notify the user
-      fetchTherapistSchedules(Number(therapistId)); // Refresh the schedules after booking
+      // Extract the treatmentCost directly from the schedule object
+      const amount = treatmentCost || 0; // Default to 0 if treatmentCost is not provided
 
-      const amount = treatmentCost || 0;
+      if (isNaN(amount) || amount <= 0) {
+        alert("Invalid treatment cost. Please check the schedule details.");
+        return;
+      }
+
+      // Update the schedule to mark it as booked
+      const { id, ...payload } = schedule;
+      payload.isBooked = true; // Mark the schedule as booked
+
+      console.log("Payload being sent to updateSchedule:", payload);
+
+      await updateSchedule(id, payload); // Call the API to update the schedule
+      alert("Schedule updated successfully!"); // Notify the user
+
+      // Proceed to create the MoMo payment
       console.log("Amount being sent to createMoMoPayment:", amount);
       const response = await createMoMoPayment(amount);
 
       console.log("MoMo Payment Response:", response);
+
       if (response && response.payUrl) {
         // Redirect to the payUrl
         window.location.href = response.payUrl;
@@ -39,7 +47,10 @@ const ScheduleTherapist = () => {
         alert("Failed to retrieve payment URL. Please try again.");
       }
     } catch (error) {
-      console.error("Error booking schedule:", error);
+      console.error(
+        "Error booking schedule:",
+        error.response?.data || error.message
+      );
       alert("Failed to book the schedule. Please try again.");
     }
   };
