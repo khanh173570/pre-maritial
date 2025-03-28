@@ -1,0 +1,91 @@
+/* Container for the schedule page */
+.schedule-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+/* Page title */
+.schedule-container h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Back button */
+.schedule-container button {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.schedule-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Schedule list */
+.schedule-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Individual schedule item */
+.schedule-item {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.schedule-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Schedule details */
+.schedule-item p {
+  margin: 5px 0;
+  color: #555;
+  font-size: 14px;
+}
+
+.schedule-item strong {
+  color: #333;
+}
+
+/* Book Now button */
+.book-now-button {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.book-now-button:hover {
+  background-color: #218838;
+}
+
+/* Disabled Book Now button */
+.book-now-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

@@ -43,6 +43,11 @@ const ArticlePartsPage = () => {
       <h1 className="mb-4 article-title-parts-page">
         {state?.articleTitle || "Article Parts"}
       </h1>
+      {state?.author && (
+        <p className="mb-4 text-muted article-author">
+          <strong>Author:</strong> {state.author}
+        </p>
+      )}
       {articleParts.length > 0 ? (
         <ul className="article-parts-continuous">
           {articleParts.map((part) => (

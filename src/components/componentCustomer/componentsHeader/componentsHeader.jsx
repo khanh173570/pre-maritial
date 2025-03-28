@@ -10,9 +10,28 @@ import { FaUser } from "react-icons/fa"; // Đổi sang icon người dùng
 import { FaBars } from "react-icons/fa";
 import PRE from "../../../assets/asstetsCustomer/react.svg";
 import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
+import { getWalletByUserId } from "../../../pages/pagesCustomer/customerServices";
 function ComponentsHeader() {
   const navigate = useNavigate();
   const { user, dispatch } = useAuth();
+  const [walletBalance, setWalletBalance] = useState(0);
+
+  // Fetch wallet balance on component mount
+  useEffect(() => {
+    const fetchBalance = async () => {
+      try {
+        if (user) {
+          const wallet = await getWalletByUserId(user.id); // Fetch wallet balance
+          setWalletBalance(wallet.balance); // Update state with wallet balance
+        }
+      } catch (error) {
+        console.error("Error fetching wallet balance:", error);
+      }
+    };
+
+    fetchBalance();
+  }, [user]);
 
   const handleLogout = () => {
     localStorage.removeItem("user"); // Xóa thông tin user
@@ -72,7 +91,20 @@ function ComponentsHeader() {
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <FaUser size={20} style={{ marginRight: "8px" }} />
                   {user && (
-                    <span style={{ fontWeight: "bold" }}>{user.username}</span>
+                    <>
+                      <span style={{ fontWeight: "bold", marginRight: "10px" }}>
+                        {user.username}
+                      </span>
+                      <span
+                        style={{
+                          fontWeight: "bold",
+                          color: "#28a745", // Green color for balance
+                        }}
+                      >
+                        {walletBalance.toFixed(2)}VND{" "}
+                        {/* Display wallet balance */}
+                      </span>
+                    </>
                   )}
                 </div>
               }

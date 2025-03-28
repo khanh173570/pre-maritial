@@ -388,3 +388,24 @@ export const createMoMoPayment = async (amount) => {
     throw error; // Throw the error for further handling
   }
 };
+
+//===========================Wallet============================
+// Update wallet balance
+export const updateWalletBalance = async (walletId, balance) => {
+  try {
+    const response = await axios.put(
+      `${API_URL}/wallets/Balance/${walletId}?balance=${balance}`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`, // Include token for authentication
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response.data; // Return the updated wallet data
+  } catch (error) {
+    console.error("Error updating wallet balance:", error);
+    throw error;
+  }
+};

@@ -56,9 +56,9 @@ const ArticlesPage = () => {
     return images[Math.floor(Math.random() * images.length)];
   };
 
-  const handleArticleClick = (articleId, articleTitle) => {
+  const handleArticleClick = (articleId, articleTitle, authorName) => {
     navigate(`/customer-home/articles/${articleId}/parts`, {
-      state: { articleTitle },
+      state: { articleTitle, author: authorName }, // Pass the article title and author name
     });
   };
 
@@ -81,7 +81,13 @@ const ArticlesPage = () => {
             <li
               key={article.id}
               className="article-item"
-              onClick={() => handleArticleClick(article.id, article.title)}
+              onClick={() =>
+                handleArticleClick(
+                  article.id,
+                  article.title,
+                  authors[article.approvedUserId] || "Author unknown" // Pass the author's name or "Author unknown"
+                )
+              }
             >
               <img
                 src={getRandomImage()}

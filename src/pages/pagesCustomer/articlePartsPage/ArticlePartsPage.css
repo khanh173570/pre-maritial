@@ -45,3 +45,9 @@
   margin-bottom: 15px;
   object-fit: cover;
 }
+
+.article-author {
+  font-size: 16px;
+  color: #6c757d; /* Muted text color */
+  margin-bottom: 20px;
+}
