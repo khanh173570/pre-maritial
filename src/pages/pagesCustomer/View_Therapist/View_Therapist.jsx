@@ -174,6 +174,10 @@ const View_Therapist = () => {
                   <h3>{fullName}</h3>
                   <h4>{therapist.title}</h4>
                   <p>{therapist.bio}</p>
+                  <p>
+                    <strong>Chi phí điều trị:</strong> $
+                    {therapist.treatmentCost}
+                  </p>
                   <p>Email: {user?.email || "N/A"}</p>{" "}
                   {/* Fallback for null email */}
                   <div className="contact-info">
