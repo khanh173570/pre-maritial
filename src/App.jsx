@@ -34,6 +34,15 @@ import UserInfoForm from "./pages/pagesAdmin/UserInfoForm";
 
 import { CUSTOMER, THERAPIST, ADMIN } from "./utils/constants/role";
 import PagesTherapist from "./pages/pagesTherapist/PagesTherapist";
+import TherapistWallet from "./pages/pagesTherapist/TherapistWallet"; // Add this import
+import TherapistProfile from "./pages/pagesTherapist/TherapistProfile";
+import TherapistWithdrawnRequests from "./pages/pagesTherapist/TherapistWithdrawnRequests";
+import TherapistTransactionHistory from "./pages/pagesTherapist/TherapistTransactionHistory";
+import TherapistNotifications from "./pages/pagesTherapist/TherapistNotifications"; // Add this import
+import TherapistBookings from "./pages/pagesTherapist/TherapistBookings";
+import TherapistQuiz from "./pages/pagesTherapist/TherapistQuiz";
+import TherapistArticles from "./pages/pagesTherapist/TherapistArticles";
+import TherapistArticleDetail from "./pages/pagesTherapist/TherapistArticleDetail";
 
 // Import Therapist Context
 import GlobalProvider from "./contexts/TherapistContext";
@@ -138,6 +147,15 @@ const App = () => {
           {/* Route cho Therapist */}
           <Route element={<TherapistApp />}>
             <Route path="/therapist-home" element={<PagesTherapist />} />
+            <Route path="/therapist-home/profile" element={<TherapistProfile />} />
+            <Route path="/therapist-home/wallet" element={<TherapistWallet />} />
+            <Route path="/therapist-home/withdrawn-requests" element={<TherapistWithdrawnRequests />} />
+            <Route path="/therapist-home/transaction-history" element={<TherapistTransactionHistory />} />
+            <Route path="/therapist-home/notifications" element={<TherapistNotifications />} /> {/* Add this route */}
+            <Route path="/therapist-home/schedule" element={<TherapistBookings />} />
+            <Route path="/therapist-home/quiz" element={<TherapistQuiz />} />
+            <Route path="/therapist-home/articles" element={<TherapistArticles />} />
+            <Route path="/therapist-home/articles/:id" element={<TherapistArticleDetail />} />
           </Route>
 
           {/* Mặc định chuyển hướng về customer nếu route không tồn tại */}
