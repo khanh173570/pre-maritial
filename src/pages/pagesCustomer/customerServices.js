@@ -370,11 +370,11 @@ export const updateSchedule = async (scheduleId, payload) => {
 
 //===========================MOMO===========================
 // Create a MoMo payment
-export const createMoMoPayment = async () => {
+export const createMoMoPayment = async (amount) => {
   try {
     const response = await axios.post(
       `${API_URL}/api/momo/create`,
-      {},
+      { amount },
       {
         headers: {
           Authorization: `Bearer ${getAccessToken()}`, // Include the token for authorization

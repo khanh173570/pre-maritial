@@ -120,8 +120,10 @@ const View_Therapist = () => {
     return <p>Loading...</p>;
   }
 
-  const handleTherapistClick = (therapistId) => {
-    navigate(`/customer-home/view-therapists/schedule/${therapistId}`);
+  const handleTherapistClick = (therapist) => {
+    navigate(`/customer-home/view-therapists/schedule/${therapist.userId}`, {
+      state: { treatmentCost: therapist.treatmentCost }, // Pass the treatmentCost
+    });
   };
 
   // Access the `content` property of therapists
@@ -164,7 +166,7 @@ const View_Therapist = () => {
               <div
                 key={therapist.userId}
                 className="therapist-card"
-                onClick={() => handleTherapistClick(therapist.userId)}
+                onClick={() => handleTherapistClick(therapist)}
               >
                 <img
                   src={therapist.profilePicture || defaultProfilePicture}
@@ -175,8 +177,8 @@ const View_Therapist = () => {
                   <h4>{therapist.title}</h4>
                   <p>{therapist.bio}</p>
                   <p>
-                    <strong>Chi phí điều trị:</strong> $
-                    {therapist.treatmentCost}
+                    <strong>Chi phí điều trị:</strong> {therapist.treatmentCost}
+                    VND
                   </p>
                   <p>Email: {user?.email || "N/A"}</p>{" "}
                   {/* Fallback for null email */}

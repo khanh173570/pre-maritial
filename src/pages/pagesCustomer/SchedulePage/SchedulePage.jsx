@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { TherapistContext } from "../../../contexts/TherapistContext";
 import "./ScheduleTherapist.css";
 import { updateSchedule, createMoMoPayment } from "../customerServices";
@@ -8,6 +8,8 @@ const ScheduleTherapist = () => {
   const { therapistId } = useParams();
   const { schedules, fetchTherapistSchedules } = useContext(TherapistContext);
   const navigate = useNavigate();
+  const location = useLocation(); // Use useLocation to retrieve state
+  const { treatmentCost } = location.state || {}; // Get treatmentCost from state
 
   useEffect(() => {
     fetchTherapistSchedules(Number(therapistId));
@@ -25,7 +27,9 @@ const ScheduleTherapist = () => {
       alert("Booking successful!"); // Notify the user
       fetchTherapistSchedules(Number(therapistId)); // Refresh the schedules after booking
 
-      const response = await createMoMoPayment();
+      const amount = treatmentCost || 0;
+      console.log("Amount being sent to createMoMoPayment:", amount);
+      const response = await createMoMoPayment(amount);
 
       console.log("MoMo Payment Response:", response);
       if (response && response.payUrl) {
