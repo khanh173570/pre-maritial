@@ -20,21 +20,21 @@ export const GlobalProvider = ({ children }) => {
         navigate("/login");
         return;
       }
-  
+
       const headers = {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       };
-  
+
       const response = await fetch(
         "http://54.179.45.72:8080/therapists?page=1&size=99",
         { headers }
       );
-  
+
       if (!response.ok) {
         throw new Error("Lỗi khi lấy dữ liệu therapists");
       }
-  
+
       const data = await response.json();
       console.log("Therapists data:", data);
       setTherapists(data);
@@ -43,6 +43,37 @@ export const GlobalProvider = ({ children }) => {
       navigate("/login");
     }
   };
+
+  // Fetch the list of majors
+  const fetchMajors = async () => {
+    try {
+      const token = getToken();
+      if (!token) {
+        console.log("Token is missing, redirecting to login...");
+        navigate("/login");
+        return;
+      }
+
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      };
+
+      const response = await fetch("http://54.179.45.72:8080/therapistMajors", {
+        headers,
+      });
+
+      if (!response.ok) {
+        throw new Error("Error fetching majors");
+      }
+
+      const data = await response.json();
+      setMajors(data); // Update the majors state
+    } catch (error) {
+      console.error("Error fetching majors:", error);
+    }
+  };
+
   // Lấy lịch trình của therapist theo therapistId
   const fetchTherapistSchedules = async (therapistId) => {
     try {
@@ -92,6 +123,7 @@ export const GlobalProvider = ({ children }) => {
         majors,
         schedules,
         fetchTherapists,
+        fetchMajors,
         fetchTherapistSchedules,
       }}
     >
@@ -113,7 +145,10 @@ const updateTherapist = async (userId, updatedData) => {
       Authorization: `Bearer ${token}`,
     };
 
-    console.log("Making PUT request to:", `http://54.179.45.72:8080/therapists/${userId}`);
+    console.log(
+      "Making PUT request to:",
+      `http://54.179.45.72:8080/therapists/${userId}`
+    );
     console.log("Request headers:", headers);
     console.log("Request body:", updatedData);
 

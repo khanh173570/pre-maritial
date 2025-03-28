@@ -91,7 +91,8 @@ import defaultProfilePicture from "../../../assets/asstetsCustomer/default-profi
 import "./ViewTherapist.css";
 
 const View_Therapist = () => {
-  const { therapists, majors, fetchTherapists } = useContext(TherapistContext);
+  const { therapists, majors, fetchTherapists, fetchMajors } =
+    useContext(TherapistContext);
   const [selectedMajor, setSelectedMajor] = useState("");
   const [users, setUsers] = useState([]); // State to store user details
   const [loading, setLoading] = useState(true);
@@ -102,6 +103,7 @@ const View_Therapist = () => {
     const fetchData = async () => {
       try {
         await fetchTherapists();
+        await fetchMajors(); // Fetch majors
         const userData = await getUsers(); // Fetch users
         setUsers(userData); // Store users in state
         setLoading(false);
@@ -124,6 +126,7 @@ const View_Therapist = () => {
 
   // Access the `content` property of therapists
   const therapistList = therapists?.content || [];
+  const majorList = majors?.content || [];
 
   const filteredTherapists = therapistList.filter(
     (t) => !selectedMajor || t.therapistMajorId === Number(selectedMajor)
@@ -141,7 +144,7 @@ const View_Therapist = () => {
           onChange={(e) => setSelectedMajor(e.target.value)}
         >
           <option value="">-- Chọn chuyên ngành --</option>
-          {majors.map((major) => (
+          {majorList.map((major) => (
             <option key={major.id} value={major.id}>
               {major.name}
             </option>
