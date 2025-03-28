@@ -55,6 +55,7 @@ import ArticleDetails from "./pages/pagesAdmin/ArticleDetails";
 import CreateArticle from "./pages/pagesAdmin/CreateArticle";
 import ArticlePartsPage from "./pages/pagesCustomer/articlePartsPage/ArticlePartsPage";
 import ViewWallet from "./pages/pagesCustomer/View_Wallet/View_Wallet";
+import TransactionHistory from "./pages/pagesCustomer/transactionHistory/TransactionHistory";
 const App = () => {
   return (
     <GlobalProvider>
@@ -86,6 +87,10 @@ const App = () => {
             >
               <Route path="profile" element={<ProfileCustomer />} />
               <Route path="wallet" element={<ViewWallet />} />
+              <Route
+                path="transactionHistory"
+                element={<TransactionHistory />}
+              />
               <Route path="detail/:id" element={<DetailPage />} />
               <Route path="vows" element={<Great_Marriage_Vows />} />
               <Route

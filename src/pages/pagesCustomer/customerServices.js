@@ -346,3 +346,24 @@ export const createWallet = async (walletData) => {
     throw error;
   }
 };
+
+//===========================TherapistSchedules===========================
+//update schedule
+export const updateSchedule = async (scheduleId, payload) => {
+  try {
+    const response = await axios.put(
+      `${API_URL}/therapistSchedules/${scheduleId}`,
+      payload,
+      {
+        headers: {
+          Authorization: `Bearer ${getAccessToken()}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error updating schedule:", error);
+    throw error;
+  }
+};
