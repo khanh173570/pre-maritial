@@ -367,3 +367,24 @@ export const updateSchedule = async (scheduleId, payload) => {
     throw error;
   }
 };
+
+//===========================MOMO===========================
+// Create a MoMo payment
+export const createMoMoPayment = async () => {
+  try {
+    const response = await axios.post(
+      `${API_URL}/api/momo/create`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${getAccessToken()}`, // Include the token for authorization
+          "Content-Type": "application/json", // Set the content type to JSON
+        },
+      }
+    );
+    return response.data; // Return the response data
+  } catch (error) {
+    console.error("Error creating MoMo payment:", error);
+    throw error; // Throw the error for further handling
+  }
+};

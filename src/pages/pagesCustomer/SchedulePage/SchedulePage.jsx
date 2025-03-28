@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { TherapistContext } from "../../../contexts/TherapistContext";
 import "./ScheduleTherapist.css";
-import { updateSchedule } from "../customerServices";
+import { updateSchedule, createMoMoPayment } from "../customerServices";
 
 const ScheduleTherapist = () => {
   const { therapistId } = useParams();
@@ -24,6 +24,16 @@ const ScheduleTherapist = () => {
       await updateSchedule(id, payload); // Call the API to update the schedule
       alert("Booking successful!"); // Notify the user
       fetchTherapistSchedules(Number(therapistId)); // Refresh the schedules after booking
+
+      const response = await createMoMoPayment();
+
+      console.log("MoMo Payment Response:", response);
+      if (response && response.payUrl) {
+        // Redirect to the payUrl
+        window.location.href = response.payUrl;
+      } else {
+        alert("Failed to retrieve payment URL. Please try again.");
+      }
     } catch (error) {
       console.error("Error booking schedule:", error);
       alert("Failed to book the schedule. Please try again.");
